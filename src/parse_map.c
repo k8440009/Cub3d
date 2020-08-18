@@ -1,40 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 19:22:43 by sungslee          #+#    #+#             */
-/*   Updated: 2020/08/14 20:33:41 by sungslee         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub3d.h"
-#include <stdio.h>
 
-int			parse_line(t_info *info, char *line)
+int		read_map(t_info *info, char *line)
 {
-	printf("%s\n", line);
-	if (line[0] == '\0')
-		return(1);
-	return (0);
-}
-
-int			parse_cub(t_info *info, char *path)
-{
-	char	*line;
-	int		ret;
-	int		fd;
-
-	fd = open(path, O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
+	t_list	*lst;
+	info->map_width = 0;
+	info->map_height = 0;
+	lst = ft_lstnew(ft_strdup(line));
+	free(line);
+	while (get_next_line(info->fd, &line) > 0)
 	{
-		if ((ret = parse_line(info, line)) == -1)
-			return (-1);
-		if (ret == 0)
-			break;
+		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
 		free(line);
 	}
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
+	free(line);
+	if (!parse_map(info, lst))
+		return (exit_error(info));
 	return (1);
 }

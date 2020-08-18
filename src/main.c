@@ -13,34 +13,55 @@
 #include "../includes/cub3d.h"
 #include <stdio.h>
 
+char		*error;
+
 int			set_info(t_info *info, char *path)
 {
-	parse_cub(info, path);
+	init_player(&info->player);
+	if (!parse_cub(info, path))
+		return error;
+	init_player_direction(info);
+	info->mlx = mlx_init();
+	if (!init_buffer(info))
+		return (error);
+	load_texture(info);
+	info->img.img = mlx_new_image();
+	info->img.data = mlx_get_data_addr();
 	return (1);
+}
+
+int			process_option(t_info *info, int option)
+{
+	if (option == 1)
+	{
+		raycasting(info);
+		sprite_raycasting(info, &info->player);
+		if (!save_bmp(info))
+			return (error);
+		exit(0);
+	}
+	else
+	{
+		mlx_new_window();
+		mlx_hook();
+		mlx_loop_hook();
+		mlx_loop();
+	}
+	
 }
 
 int			main(int argc, char **argv)
 {
-	t_info	info;
-	int		option;
+	t_info		info;
+	int			option;
 
-	option = (argc >= 2 && (ft_strncmp(argv[1], "--save", 6) == 0)) ? 1 : 0;
+	// option = (argc >= 2 && (ft_strncmp(argv[1], "--save", 6) == 0)) ? 1 : 0;
 	if (argc < option + 2)
-		printf("add map\n");
-	
-	int fd;
-	int ret;
-	char	*line;
-
-	fd = open(argv[1], O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		printf("get_next_line : %s\n", line);
-		printf("return value : %d\n\n", ret);
-		free(line);
-	}
-	printf("get_next_line : %s\n", line);
-	printf("return value : %d\n", ret);
-	free(line);
-	
+		return (error);
+	if (!set_info(&info, argv[option + 1]))
+		return (error);
+	if (!process_option(&info, option))
+		return (error);
+	free_cub(&info);
+	return (0);
 }
