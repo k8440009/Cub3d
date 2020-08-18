@@ -9,6 +9,7 @@ int				check_element(char *line, int type)
 	{
 		if (type == NUMBER)
 		{
+			printf("%c : %d\n", line[idx], line[idx]);
 			if (line[idx] == ' ')
 				break;
 			else if (!ft_isdigit(line[idx]))
@@ -36,8 +37,8 @@ int				get_screen_size(t_info *info, char *line)
 	if (!check_element(data[0], NUMBER) || !check_element(data[1], NUMBER))
 	{
 		printf("split error 3\n");
-		print("data 0 size : %d, data 0 print : %s\n", ft_strlen(data[0]), data[0]);
-		print("data 1 size : %d, data 1 print : %s\n", ft_strlen(data[1]), data[1]);
+		printf("data 0 size : %d, data 0 print : %s\n", ft_strlen(data[0]), data[0]);
+		printf("data 1 size : %d, data 1 print : %s\n", ft_strlen(data[1]), data[1]);
 		return (print_error(ELEMENT_ERROR, info));
 	}
 	info->width = ft_atoi(data[0]);
