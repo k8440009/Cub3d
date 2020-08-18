@@ -19,37 +19,30 @@ int				check_element(char *line, int type)
 	}
 	return (1);
 }
+int				str_length(char **str)
+{
+	int 	i;
+
+	i = 0;
+	while (str++)
+		i++;
+	return (i);
+}
 
 int				get_screen_size(t_info *info, char *line)
 {
 	char	**data;
 
-	if (!(data = ft_split(line, ' ')))
-	{
-		printf("split error1\n");
+	if (!(data = ft_split(line, ' ')) || str_length(data) >= 3)
 		return (print_error(ELEMENT_ERROR, info));
-	}
 	if (!data || !data[0] || !data[1])
-	{
-		printf("split error2\n");
 		return (print_error(ELEMENT_ERROR, info));
-	}
-	if (!check_element(data[0], NUMBER) || !check_element(data[1], NUMBER))
-	{
-		printf("split error 3\n");
-		printf("data 0 size : %d, data 0 print : %s\n", ft_strlen(data[0]), data[0]);
-		printf("data 1 size : %d, data 1 print : %s\n", ft_strlen(data[1]), data[1]);
-		return (print_error(ELEMENT_ERROR, info));
-	}
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
 	printf("width : %d\n", info->width);
 	printf("height : %d\n", info->height);
 	if (info->width <= 0 || info->height <= 0)
-	{
-		printf("width, height error\n");
 		return (print_error(ELEMENT_ERROR, info));
-	}
 	return (1);
 }
 
