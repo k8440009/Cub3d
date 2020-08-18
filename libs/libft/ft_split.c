@@ -12,73 +12,74 @@
 
 #include "libft.h"
 
-static size_t		sizeof_split(char const *s, char c)
-{
-	int				status;
-	size_t			cnt;
+#include "libft.h"
 
-	status = 0;
-	cnt = 0;
-	while (*s)
+/*
+** - Allocates (with malloc) an array of strings obtained by splitting 's'
+**   using the character 'c' as a delimiter.
+** - The array must be ended by a NULL pointer.
+** - Returns the array of new strings, or NULL if the allocation fails.
+*/
+
+size_t	ft_strnum(char *s, char c)
+{
+	size_t	i;
+	size_t	num;
+
+	num = 0;
+	i = 0;
+	while (s[i])
 	{
-		if (status == 0 && *s != c)
+		if (s[i] != c)
 		{
-			status = 1;
-			cnt++;
+			while (s[i] != c && s[i])
+				i++;
+			num++;
 		}
-		else if (status == 1 && *s == c)
-			status = 0;
-		s++;
+		else
+			i++;
 	}
-	return (cnt);
+	return (num);
 }
 
-static int			str_to_split(char **dest, char const *s, char c)
+void	str_malloc_copy(char *s, char c, size_t num, char **res)
 {
-	size_t		split_len;
+	size_t	x;
+	size_t	i;
+	size_t	len;
 
-	while (*s)
+	i = 0;
+	x = 0;
+	while (s[i] && x < num)
 	{
-		while (*s == c && *s != '\0')
-			s++;
-		if (*s == '\0')
-			break ;
-		split_len = 0;
-		while (*(s + split_len) != c && *(s + split_len) != '\0')
-			split_len++;
-		if (!(*dest = (char *)malloc(split_len + 1)))
-			return (0);
-		ft_strlcpy(*dest, s, split_len + 1);
-		dest++;
-		s += split_len;
+		len = 0;
+		if (s[i] != c)
+		{
+			while (s[i + len] != c && s[i + len])
+				len++;
+			res[x] = ft_calloc(sizeof(char), len + 1);
+			if (res[x] == 0)
+				return ;
+			ft_strlcpy(res[x], s + i, len + 1);
+			x++;
+		}
+		i += 1 + len;
 	}
-	return (1);
 }
 
-static void			free_split(char **dest, size_t split_len)
+char	**ft_split(char const *s, char c)
 {
-	size_t i;
+	size_t	num;
+	char	**res;
 
-	i = 0 - 1;
-	while (++i < split_len + 1)
-		free(dest[i]);
-	free(dest);
+	if (s == 0)
+		return (0);
+	num = ft_strnum((char *)s, c);
+	res = ft_calloc(sizeof(char *), num + 1);
+	if (res == 0)
+		return (0);
+	res[num] = 0;
+	str_malloc_copy((char *)s, c, num, res);
+	return (res);
 }
 
-char				**ft_split(char const *s, char c)
-{
-	char	**tab;
-	size_t	split_len;
-
-	if (s == NULL)
-		return (NULL);
-	split_len = sizeof_split(s, c);
-	if (!(tab = (char **)ft_calloc(split_len + 1, sizeof(char *))))
-		return (NULL);
-	if (!(str_to_split(tab, s, c)))
-	{
-		free_split(tab, split_len);
-		return (NULL);
-	}
-	return (tab);
-}
