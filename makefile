@@ -16,7 +16,7 @@ CC = gcc
 LIBFT = ./libs/libft
 INCS = -I ./includes -I ./libs/libft -I ./libs/minilibx
 INCLIB = -lmlx -framework OpenGL -framework Appkit -L ./libs/libft -lft
-CFLAGS = -Wall -Werror -Wextra $(INCS)
+# CFLAGS = -Wall -Werror -Wextra $(INCS)
 
 SRCS =  ./src/get_next_line.c \
 		./src/main.c \
@@ -30,7 +30,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(MAKE) -C $(LIBFT)
-	$(CC) $(CLAGS) $(INCS) -g -o $(NAME) $(OBJS) $(INCLIB)
+	$(CC) $(INCS) -g -o $(NAME) $(OBJS) $(INCLIB)
+	# $(CC) $(CLAGS) $(INCS) -g -o $(NAME) $(OBJS) $(INCLIB)
 
 clean :
 	$(MAKE) -C $(LIBFT) clean

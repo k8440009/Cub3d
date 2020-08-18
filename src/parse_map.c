@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int		parse_map(t_info *info, t_list *list)
 {
