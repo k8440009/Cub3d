@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stddef.h>
+# include <stdio.h>
 # include "../libs/libft/libft.h"
 
 int			get_next_line(int fd, char **line);
