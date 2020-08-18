@@ -1,9 +1,10 @@
 #include "../includes/cub3d.h"
+#include <stdio.h>
 
 int		init_data(t_info *info, int option)
 {
-	init_info();
-	init_player();
+	//init_info();
+	//init_player();
 }
 
 int 	main(int argc, char **argv)

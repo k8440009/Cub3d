@@ -29,8 +29,8 @@ int				get_screen_size(t_info *info, char *line)
 		return (print_error(ELEMENT_ERROR, info));
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
-	print("width : %d\n", info->width);
-	print("height : %d\n", info->height);
+	printf("width : %d\n", info->width);
+	printf("height : %d\n", info->height);
 	if (info->width <= 0 || info->height <= 0)
 		return (print_error(ELEMENT_ERROR, info));
 	return (1);
@@ -82,8 +82,12 @@ int			parse_cub(t_info *info, char *path)
 		else if (ret == 0)	// EOF
 			break;
 		else	// 에러
+		{
+			printf("parse_cub error\n");
 			print_error(ELEMENT_ERROR, info);
+		}
 	}
+	return (1);
 	//if (!read_map(info, line))
 	//	return (print_error(MAP_ERROR, info));
 }

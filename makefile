@@ -6,7 +6,7 @@
 #    By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/11 07:10:57 by sungslee          #+#    #+#              #
-#    Updated: 2020/08/14 20:53:45 by sungslee         ###   ########.fr        #
+#    Updated: 2020/08/19 03:57:02 by sungslee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS =  ./src/get_next_line.c \
 		./src/main.c \
 		./src/error.c \
 		./src/utils.c \
-		./src/parse_cub
+		./src/parse_cub.c
 
 OBJS = $(SRCS:.c=.o)
 
