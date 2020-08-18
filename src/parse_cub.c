@@ -22,17 +22,29 @@ int				get_screen_size(t_info *info, char *line)
 	char	**data;
 
 	if (!(data = ft_split(line, ' ')))
+	{
+		printf("split error1\n");
 		return (print_error(ELEMENT_ERROR, info));
+	}
 	if (!data || !data[0] || !data[1])
+	{
+		printf("split error2\n");
 		return (print_error(ELEMENT_ERROR, info));
+	}
 	if (!check_element(data[0], NUMBER) || !check_element(data[1], NUMBER))
+	{
+		printf("split error 3\n");
 		return (print_error(ELEMENT_ERROR, info));
+	}
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
 	printf("width : %d\n", info->width);
 	printf("height : %d\n", info->height);
 	if (info->width <= 0 || info->height <= 0)
+	{
+		printf("width, height error\n");
 		return (print_error(ELEMENT_ERROR, info));
+	}
 	return (1);
 }
 

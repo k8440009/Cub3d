@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
-#include <stdio.h>
 
 static int	handle_line(char **line, char **buffer, char *next_line)
 {
