@@ -102,14 +102,12 @@ int			parse_cub(t_info *info, char *path)
 	int		ret;
 
 	info->fd = open(path, O_RDONLY);
-	while ((ret = get_next_line(info->fd, &line)) > 0)
+	while (get_next_line(info->fd, &line) > 0)
 	{
-		if (ret == 1)	// 라인 하나 읽음
-			parse_element(info, line);
-		else if (ret == 0)	// EOF
-			break;
-		else	// 에러
-			print_error("parse_cub error", info);
+		if ((ret = parse_line(info, line)) == -1)
+			return (print_error("parse_cub error1", info));
+		if (ret == 0)
+			break ;
 		free(line);
 	}
 	return (1);
