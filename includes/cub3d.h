@@ -38,11 +38,22 @@
 */
 # define NUMBER 1
 
+typedef struct		s_player
+{
+	int			y;
+	int			x;
+}					t_player;
 typedef struct		s_info
 {
+	void		*mlx;
+	void		*win;
+	t_player	player;
 	int			fd;
-	int			width;
-	int			height;
+	int			win_width;
+	int			win_height;
+	int			map_width;
+	int			map_height;
+	char		**map;
 	char		*north_texture_path;
 	char		*south_texture_path;
 	char		*west_texture_path;
@@ -50,6 +61,8 @@ typedef struct		s_info
 	char		*sprite_texture_path;
 	int			floor_color;
 	int			ceiling_color;
+	int			count_sprite;
+	int			dir;
 }					t_info;
 /*
 **	parse_cub
@@ -64,4 +77,13 @@ int			print_error(char *message, t_info *info);
 **	utils
 */
 void			free_two_pointer(char **str);
+int				is_dir(int c);
+/*
+**	check_map
+*/
+int			check_map_left(t_info *info, int y, int x);
+int			check_map_right(t_info *info, int y, int x);
+int			check_map_bottom(t_info *info, int y);
+int			check_map_middle(t_info *info, int y, int x);
+int			check_map_top(t_info *info);
 #endif
