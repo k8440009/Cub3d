@@ -18,8 +18,8 @@ int				get_screen_size(t_info *info, char *line)
 		return (print_error("split 1 error", info));
 	if (!data || !data[0] || !data[1])
 		return (print_error("split 2 error", info));
-	printf("data[0] size : %d\n", data[0]);
-	printf("data[1] size : %d\n", data[1]);
+	printf("data[0] size : %d\n", ft_strlen(data[0]));
+	printf("data[1] size : %d\n", ft_strlen(data[1]));
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
 	if (info->width <= 0 || info->height <= 0)

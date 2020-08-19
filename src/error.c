@@ -25,7 +25,7 @@ int			print_error(int	error_code, t_info *info)
 		return (map_error(info));
 }
 */
-int			print_error(t_info *info, char *message)
+int			print_error(char *message, t_info *info)
 {
 	ft_putstr(message);
 	if (info->fd > 0)
