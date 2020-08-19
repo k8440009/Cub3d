@@ -114,6 +114,10 @@ int			parse_cub(t_info *info, char *path)
 		free(line);
 	}
 	return (1);
-	//if (!read_map(info, line))
-	//	return (print_error(MAP_ERROR, info));
+	if (!read_map(info, line))
+		return (print_error("parse_cub error2", info));
+	if (!set_sprite(info))
+		return (print_error("parse_cub error3", info));
+	return (1);
 }
+

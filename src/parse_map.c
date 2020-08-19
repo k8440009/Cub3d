@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int		check_valid_map(t_info *info)
+int			check_valid_map(t_info *info)
 {
 	int		y;
 	int		x;
@@ -28,7 +28,7 @@ int		check_valid_map(t_info *info)
 	return (1);
 }
 
-int		init_direction(t_info *info, int y, int x, int *dir_count)
+int			init_direction(t_info *info, int y, int x, int *dir_count)
 {
 	if (info->map[y][x] == 'N')
 		info->dir = NORTH;
@@ -46,7 +46,7 @@ int		init_direction(t_info *info, int y, int x, int *dir_count)
 	return (1);
 }
 
-int		fill_map(t_info *info, t_list *lst)
+int			fill_map(t_info *info, t_list *lst)
 {
 	int		y;
 	int		x;
@@ -76,7 +76,7 @@ int		fill_map(t_info *info, t_list *lst)
 	return (1);
 }
 
-int				get_max_line_size(t_list *lst)
+int			get_max_line_size(t_list *lst)
 {
 	int		max_size;
 	int		size;
@@ -92,7 +92,7 @@ int				get_max_line_size(t_list *lst)
 	return (max_size);
 }
 
-int		init_map(t_info *info, t_list *lst)
+int			init_map(t_info *info, t_list *lst)
 {
 	int		y;
 	int		x;
@@ -118,7 +118,7 @@ int		init_map(t_info *info, t_list *lst)
 	return (1);
 }
 
-int		parse_map(t_info *info, t_list *lst)
+int			parse_map(t_info *info, t_list *lst)
 {
 	if (!init_map(info, lst))
 		return (print_error("init_map error", info));
@@ -130,7 +130,7 @@ int		parse_map(t_info *info, t_list *lst)
 	return (1);
 }
 
-int		read_map(t_info *info, char *line)
+int			read_map(t_info *info, char *line)
 {
 	t_list		*lst;
 

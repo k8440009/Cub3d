@@ -38,16 +38,25 @@
 */
 # define NUMBER 1
 
+typedef struct		s_sprite
+{
+	double			y;
+	double			x;
+	double			distance;
+}					t_sprite;
+
 typedef struct		s_player
 {
-	int			y;
-	int			x;
+	double			y;
+	double			x;
 }					t_player;
+
 typedef struct		s_info
 {
 	void		*mlx;
 	void		*win;
 	t_player	player;
+	t_sprite	*sprite;
 	int			fd;
 	int			win_width;
 	int			win_height;
@@ -69,6 +78,20 @@ typedef struct		s_info
 */
 int			parse_cub(t_info *info, char *path);
 /*
+**	parse_map
+*/
+int			check_valid_map(t_info *info);
+int			init_direction(t_info *info, int y, int x, int *dir_count);
+int			fill_map(t_info *info, t_list *lst);
+int			get_max_line_size(t_list *lst);
+int			init_map(t_info *info, t_list *lst);
+int			parse_map(t_info *info, t_list *lst);
+int			read_map(t_info *info, char *line);
+/*
+**	parse_sprite
+*/
+int			set_sprite(t_info *info);
+/*
 ** error
 */
 // int			print_error(int	error_code, t_info *info);
@@ -76,8 +99,12 @@ int			print_error(char *message, t_info *info);
 /*
 **	utils
 */
-void			free_two_pointer(char **str);
-int				is_dir(int c);
+void		free_two_pointer(char **str);
+int			is_map_arg(int c);
+/*
+**	check_element
+*/
+int			check_info(t_info *info);
 /*
 **	check_map
 */
