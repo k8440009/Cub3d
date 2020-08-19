@@ -18,8 +18,7 @@ int				get_screen_size(t_info *info, char *line)
 		return (print_error("split 1 error", info));
 	if (!data || !data[0] || !data[1])
 		return (print_error("split 2 error", info));
-	printf("data[0] size : %d\n", ft_strlen(data[0]));
-	printf("data[1] size : %d\n", ft_strlen(data[1]));
+	ft_putnbr_fd(ft_strlen(data[1]), 1);
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
 	if (info->width <= 0 || info->height <= 0)
@@ -104,7 +103,7 @@ int			parse_cub(t_info *info, char *path)
 	info->fd = open(path, O_RDONLY);
 	while (get_next_line(info->fd, &line) > 0)
 	{
-		if ((ret = parse_line(info, line)) == -1)
+		if ((ret = parse_element(info, line)) == -1)
 			return (print_error("parse_cub error1", info));
 		if (ret == 0)
 			break ;
