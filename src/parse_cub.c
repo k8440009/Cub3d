@@ -18,7 +18,8 @@ int				get_screen_size(t_info *info, char *line)
 		return (print_error("split 1 error", info));
 	if (!data || !data[0] || !data[1])
 		return (print_error("split 2 error", info));
-	ft_putnbr_fd(ft_strlen(data[1]), 1);
+	printf("data[0] size : %d\n", ft_strlen(data[0]));
+	printf("data[1] size : %d\n", ft_strlen(data[1]));
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
 	if (info->width <= 0 || info->height <= 0)
@@ -56,6 +57,9 @@ int				get_color(t_info *info, char *line, int type)
 		return (print_error("get color error1\n", info));
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
 		return (print_error("get color error 2\n", info));
+	printf("rgb[0] size : %d\n", ft_strlen(rgb[0]));
+	printf("rgb[1] size : %d\n", ft_strlen(rgb[1]));
+	printf("rgb[2] size : %d\n", ft_strlen(rgb[2]));
 	color = 0;
 	i = 0;
 	while (rgb[i])
