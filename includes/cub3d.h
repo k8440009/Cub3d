@@ -29,6 +29,7 @@
 # define EAST 1
 # define SOUTH 2
 # define WEST 3
+# define SPRITE 4
 
 # define FLOOR 1
 # define CEILING 2
@@ -42,6 +43,13 @@ typedef struct		s_info
 	int			fd;
 	int			width;
 	int			height;
+	char		*north_texture_path;
+	char		*south_texture_path;
+	char		*west_texture_path;
+	char		*east_texture_path;
+	char		*sprite_texture_path;
+	int			floor_color;
+	int			ceiling_color;
 }					t_info;
 /*
 **	parse_cub
@@ -50,7 +58,8 @@ int			parse_cub(t_info *info, char *path);
 /*
 ** error
 */
-int			print_error(int	error_code, t_info *info);
+// int			print_error(int	error_code, t_info *info);
+int			print_error(t_info *info, char *message);
 /*
 **	utils
 */

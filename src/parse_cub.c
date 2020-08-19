@@ -1,24 +1,5 @@
 #include "../includes/cub3d.h"
 
-int				check_element(char *line, int type)
-{
-	int		idx;
-
-	idx = 0;
-	while (line[idx])
-	{
-		if (type == NUMBER)
-		{
-			printf("%c : %d\n", line[idx], line[idx]);
-			if (line[idx] == ' ')
-				break;
-			else if (!ft_isdigit(line[idx]))
-				return (0);
-		}
-		idx++;
-	}
-	return (1);
-}
 int				str_length(char **str)
 {
 	int 	i;
@@ -32,28 +13,64 @@ int				str_length(char **str)
 int				get_screen_size(t_info *info, char *line)
 {
 	char	**data;
-
-	if (!(data = ft_split(line, ' ')) || str_length(data) >= 3)
-		return (print_error(ELEMENT_ERROR, info));
+	// 인자가 3개 이상일 때 에러 처리 추가
+	if (!(data = ft_split(line, ' ')))
+		return (print_error("split 1 error", info));
 	if (!data || !data[0] || !data[1])
-		return (print_error(ELEMENT_ERROR, info));
+		return (print_error("split 2 error", info));
+	printf("data[0] size : %d\n", data[0]);
+	printf("data[1] size : %d\n", data[1]);
 	info->width = ft_atoi(data[0]);
 	info->height = ft_atoi(data[1]);
-	printf("width : %d\n", info->width);
-	printf("height : %d\n", info->height);
 	if (info->width <= 0 || info->height <= 0)
-		return (print_error(ELEMENT_ERROR, info));
+		return (print_error("split 3 error", info));
 	return (1);
 }
 
-int				get_texture(t_info *info, char *line, int direction)
+int				get_texture(t_info *info, char *line, int type)
 {
-
+	if (type == NORTH)
+		info->north_texture_path = ft_strdup(line);
+	else if (type == EAST)
+		info->east_texture_path = ft_strdup(line);
+	else if (type == SOUTH)
+		info->south_texture_path = ft_strdup(line);
+	else if (type == WEST)
+		info->west_texture_path = ft_strdup(line);
+	else if (type == SPRITE)
+		info->sprite_texture_path = ft_strdup(line);
+	else
+		return (print_error("texture error", info));
+	return (1);
 }
 
-int				get_color(t_info *info, char *line, int direction)
+int				get_color(t_info *info, char *line, int type)
 {
+	char	**rgb;
+	int		color;
+	int		i;
 
+	/*
+	** isprint를 사용하여 출력 가능한 곳만 남기고
+	*/
+	if (!(rgb = ft_split(line, ',')))
+		return (print_error("get color error1\n", info));
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
+		return (print_error("get color error 2\n", info));
+	color = 0;
+	i = 0;
+	while (rgb[i])
+	{
+		color *= 256;
+		color += ft_atoi(rgb[i]);
+		i++;
+	}
+	free_two_pointer(rgb);
+	if (type == FLOOR)
+		info->floor_color = color;
+	else if (type == CEILING)
+		info->ceiling_color = color;
+	return (1);
 }
 
 int			parse_element(t_info *info, char *line)
@@ -69,7 +86,7 @@ int			parse_element(t_info *info, char *line)
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		return (get_texture(info, line + 3, EAST));
 	else if (ft_strncmp(line, "S ", 2) == 0)
-		return (get_texture(info, line + 2, SOUTH));
+		return (get_texture(info, line + 2, SPRITE));
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		return (get_color(info, line + 2, FLOOR));
 	else if (ft_strncmp(line, "C ", 2) == 0)
@@ -92,10 +109,8 @@ int			parse_cub(t_info *info, char *path)
 		else if (ret == 0)	// EOF
 			break;
 		else	// 에러
-		{
-			printf("parse_cub error\n");
-			print_error(ELEMENT_ERROR, info);
-		}
+			print_error("parse_cub error", info);
+		free(line);
 	}
 	return (1);
 	//if (!read_map(info, line))
