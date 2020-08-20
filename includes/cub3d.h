@@ -47,8 +47,14 @@ typedef struct		s_sprite
 
 typedef struct		s_player
 {
-	double			y;
 	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			move_speed;
+	double			rotate_speed;
 }					t_player;
 
 typedef struct		s_info
@@ -63,6 +69,7 @@ typedef struct		s_info
 	int			map_width;
 	int			map_height;
 	char		**map;
+	char		**visited;
 	char		*north_texture_path;
 	char		*south_texture_path;
 	char		*west_texture_path;
@@ -74,23 +81,39 @@ typedef struct		s_info
 	int			dir;
 }					t_info;
 /*
+**	init.c
+*/
+void		init_info(t_info *info);
+void		init_player(t_player *player);
+void		init_player_direction(t_info *info);
+int			init_direction(t_info *info, int y, int x, int *dir_count);
+int			init_map(t_info *info, t_list *lst);
+/*
 **	parse_cub
 */
 int			parse_cub(t_info *info, char *path);
+int			read_element(t_info *info, char *line);
+int			read_map(t_info *info, char *line);
 /*
 **	parse_map
 */
-int			check_valid_map(t_info *info);
-int			init_direction(t_info *info, int y, int x, int *dir_count);
-int			fill_map(t_info *info, t_list *lst);
-int			get_max_line_size(t_list *lst);
-int			init_map(t_info *info, t_list *lst);
 int			parse_map(t_info *info, t_list *lst);
-int			read_map(t_info *info, char *line);
+int			fill_map(t_info *info, t_list *lst);
+/*
+**	parse_element
+*/
+int			get_screen_size(t_info *info, char *line);
+int			get_texture(t_info *info, char *line, int type);
+int			get_color(t_info *info, char *line, int type);
+int			parse_element(t_info *info, char *line);
 /*
 **	parse_sprite
 */
 int			set_sprite(t_info *info);
+/*
+**	move_player
+*/
+void		rotate_player(t_player *player, double rotate_speed);
 /*
 ** error
 */
@@ -101,6 +124,7 @@ int			print_error(char *message, t_info *info);
 */
 void		free_two_pointer(char **str);
 int			is_map_arg(int c);
+int			get_max_line_size(t_list *lst);;
 /*
 **	check_element
 */
@@ -113,4 +137,5 @@ int			check_map_right(t_info *info, int y, int x);
 int			check_map_bottom(t_info *info, int y);
 int			check_map_middle(t_info *info, int y, int x);
 int			check_map_top(t_info *info);
+int			check_valid_map(t_info *info);;
 #endif
