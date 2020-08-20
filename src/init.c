@@ -45,6 +45,8 @@ int			init_direction(t_info *info, int y, int x, int *dir_count)
 		info->dir = WEST;
 	else
 		return (0);
+	info->player.start_r = y;
+	info->player.start_c = x;
 	info->player.y = 0.5f + y;
 	info->player.x = 0.5f + x;
 	(*dir_count)++;

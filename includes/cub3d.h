@@ -22,6 +22,9 @@
 
 # define PI 3.1415926535897
 
+# define TRUE '1'
+# define FALSE '0'
+
 # define ELEMENT_ERROR 1
 # define MAP_ERROR 2
 
@@ -38,6 +41,14 @@
 */
 # define NUMBER 1
 
+typedef struct		s_state
+{
+	int 			dr[4];
+	int				dc[4];
+	int				r;
+	int				c;
+	int				flag;
+}					t_state;
 typedef struct		s_sprite
 {
 	double			y;
@@ -47,6 +58,8 @@ typedef struct		s_sprite
 
 typedef struct		s_player
 {
+	int				start_r;
+	int				start_c;
 	double			x;
 	double			y;
 	double			dir_x;
