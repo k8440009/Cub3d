@@ -1,43 +1,41 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/08/11 07:10:57 by sungslee          #+#    #+#              #
-#    Updated: 2020/08/19 03:57:02 by sungslee         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = cub3D
 
+LIBFT = ./libft/libft.a
+
 CC = gcc
-LIBFT = ./libs/libft
-INCS = -I ./includes -I ./libs/libft -I ./libs/minilibx
-INCLIB = -lmlx -framework OpenGL -framework Appkit -L ./libs/libft -lft
+INCS = -I./includes -I./libft -I./mlx
+INCLIB = -Lmlx -lmlx -framework OpenGL -framework Appkit -Llibft -lft
 # CFLAGS = -Wall -Werror -Wextra $(INCS)
+LIBFT = ./libft
 
 SRCS =  ./src/get_next_line.c \
 		./src/main.c \
+		./src/init.c \
 		./src/error.c \
-		./src/utils.c \
-		./src/parse_cub.c
+		./src/parse_cub.c \
+		./src/parse_element.c \
+		./src/parse_map.c \
+		./src/check_map.c \
+		./src/check_element.c \
+		./src/control_player.c \
+		./src/utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME): $(OBJS)
 	$(MAKE) -C $(LIBFT)
-	$(CC) $(INCS) -g -o $(NAME) $(OBJS) $(INCLIB)
-	# $(CC) $(CLAGS) $(INCS) -g -o $(NAME) $(OBJS) $(INCLIB)
+	$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(INCLIB)
 
-clean :
+clean:
 	$(MAKE) -C $(LIBFT) clean
 	rm -f $(OBJS)
-fclean : clean
+
+fclean: clean
 	$(MAKE) -C $(LIBFT) fclean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
+
+.PHONY: test bonus all clean fclean re

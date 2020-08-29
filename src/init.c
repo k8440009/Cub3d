@@ -1,12 +1,5 @@
 #include "../includes/cub3d.h"
 
-/*
-void		init_player(&info->player)
-{
-
-}
-*/
-
 int			init_map(t_info *info, t_list *lst)
 {
 	int		y;

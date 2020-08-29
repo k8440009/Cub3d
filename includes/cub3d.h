@@ -14,12 +14,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libs/minilibx/mlx.h"
-# include "../libs/libft/libft.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
-
+# include <stdio.h>
 # define PI 3.1415926535897
 
 # define TRUE '1'

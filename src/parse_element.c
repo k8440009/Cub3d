@@ -88,4 +88,3 @@ int			parse_element(t_info *info, char *line)
 		return (1);
 	return (0);
 }
-

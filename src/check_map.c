@@ -83,7 +83,7 @@ int			check_valid_map(t_info *info)
 
 	if (!init_visited(info))
 		return (print_error("check_valid_map error 1", info));
-	init_state(&state, info);
+	init_state(info, &state);
 	dfs(info, &state, info->player.start_r, info->player.start_c);
 	if (!(state.flag))
 		return (print_error("check_valid_map error 2", info)); 

@@ -15,8 +15,8 @@ int			read_map(t_info *info, char *line)
 	}
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
 	free(line);
-	if (!parse_map(info, lst))
-		return (print_error("parse_map", info));
+	//if (!parse_map(info, lst))
+	 //   return (print_error("parse_map", info));
 	return (1);
 }
 
@@ -28,8 +28,10 @@ int			read_element(t_info *info, char *line)
 	{
 		if (!parse_element(info, line))
 			break;
+        printf("%s\n", line);
 		free(line);
 	}
+    printf("ret : %d\n", ret);
 	if (ret == -1)
 		return (print_error("parse_cub error2", info));
 	return (1);
