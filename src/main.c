@@ -1,5 +1,4 @@
 #include "../includes/cub3d.h"
-#include <stdio.h>
 
 int		init_data(t_info *info, char *path)
 {
