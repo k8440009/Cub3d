@@ -2,25 +2,27 @@
 
 int			init_map(t_info *info, t_list *lst)
 {
-	int		y;
-	int		x;
+	int		r;
+	int		c;
 
 	info->map_height = ft_lstsize(lst);
+    printf("map_height : %d\n", info->map_height);
 	if (!(info->map = (char **)malloc(sizeof(char *) * (info->map_height))))
 		return (print_error("init_map error 1", info));
-	y = 0;
+	r = 0;
 	info->map_width = get_max_line_size(lst);
+    printf("map_width : %d\n", info->map_width);
 	while (lst)
 	{
-		if (!(info->map[y] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
+		if (!(info->map[r] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
 			return(print_error("init map error 2", info));
-		x = 0;
-		while (x++ < (int)ft_strlen(lst->content))
-			info->map[y][x] = 0;
-		while (x++ < info->map_width)
-			info->map[y][x] = ' ';
-		info->map[y][info->map_width] = '\0';
-		y++;
+		c = 0;
+		while (c++ < (int)ft_strlen(lst->content))
+			info->map[r][c] = 0;
+		while (c++ < info->map_width)
+			info->map[r][c] = ' ';
+		info->map[r][info->map_width] = '\0';
+		r++;
 		lst = lst->next;
 	}
 	return (1);

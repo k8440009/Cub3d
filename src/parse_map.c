@@ -16,7 +16,7 @@ int			fill_map(t_info *info, t_list *lst)
 		while (++x < (int)ft_strlen(line))
 		{
 			if (!is_map_arg(line[x]))
-				return (print_error("fill_map error 1", info));
+				return (print_error("fill_map error1\n", info));
 			info->map[y][x] = line[x];
 			if (info->map[y][x] == '2')
 				info->count_sprite++;
@@ -27,7 +27,7 @@ int			fill_map(t_info *info, t_list *lst)
 		lst = lst->next;
 	}
 	if (dir_count == 0 || dir_count > 1)
-		return (print_error("fill_map error 2", info));
+		return (print_error("fill_map error2\n", info));
 	return (1);
 }
 
@@ -35,10 +35,20 @@ int			parse_map(t_info *info, t_list *lst)
 {
 	if (!init_map(info, lst))
 		return (print_error("init_map error", info));
+    for (int r = 0; r < info->win_width; r++)
+    {
+        for(int c = 0; c < info->win_height; c++)
+        {
+            printf("%c", info->map[r][c]);
+        }
+        printf ("\n");
+    }
+    /*
 	if (!fill_map(info, lst))
-		return (print_error("fill_map error", info));
+		return (print_error("fill_map error0\n", info));
 	ft_lstclear(&lst, free);
 	if (!check_valid_map(info))
 		return (print_error("check_valid_map", info));
+    */
 	return (1);
 }

@@ -36,7 +36,7 @@ static int	handle_line(char **line, char **buffer, char *next_line)
 
 int			get_next_line(int fd, char **line)
 {
-	static char		*buffer[500];
+	static char		*buffer[512];
 	char			tmp_buf[BUFFER_SIZE + 1];
 	char			*next_line;
 	char			*tmp;
