@@ -33,8 +33,7 @@ void		dfs(t_info *info, t_state *state, int r, int c)
 	{
 		nr = r + state->dr[dir];
 		nc = c + state->dc[dir];
-		if (nr < 0 || nr >= info->map_height || nc < 0 || nc >= info->map_width 
-			|| info->visited[nr][nc] == TRUE)
+		if (nr < 0 || nr >= info->map_height || nc < 0 || nc >= info->map_width)
 			return ;
 		dfs(info, state, nr, nc);
 		dir++;
@@ -43,20 +42,20 @@ void		dfs(t_info *info, t_state *state, int r, int c)
 
 int			init_visited(t_info *info)
 {
-	int		y;
-	int		x;
+	int		r;
+	int		c;
 
 	if (!(info->visited = (char **)malloc(sizeof(char *) * (info->map_height))))
 		return (print_error("init_visited error 1", info));
-	y = 0;
-	while (y < info->map_height)
+	r = 0;
+	while (r < info->map_height)
 	{
-		if (!(info->visited[y] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
+		if (!(info->visited[r] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
 			return (print_error("init_visited error 2", info));
-		x = 0;
-		while (x++ < info->map_width)
-			info->visited[y][x] = FALSE;
-		info->visited[y][info->map_width] = '\0';
+		c = 0;
+		while (c++ < info->map_width)
+			info->visited[r][c] = FALSE;
+		info->visited[r][info->map_width] = '\0';
 	}
 	return (1);
 }

@@ -18,12 +18,10 @@ int			get_max_line_size(t_list *lst)
 
 int			is_map_arg(int c)
 {
-    printf("%d", c);
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W'
 	|| c == ' ' || (c >= '0' && c <= '2') || c == '\n'
 	|| c == '\0')
 		return (1);
-    // printf("%c, %d", (char)c, c);
 	return (0); 
 }
 

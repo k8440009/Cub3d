@@ -35,6 +35,7 @@ clean:
 fclean: clean
 	$(MAKE) -C $(LIBFT) fclean
 	rm -f $(OBJS)
+	rm -f $(NAME)
 
 re: fclean all
 

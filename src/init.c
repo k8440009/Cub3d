@@ -6,12 +6,10 @@ int			init_map(t_info *info, t_list *lst)
 	int		c;
 
 	info->map_height = ft_lstsize(lst);
-    printf("map_height : %d\n", info->map_height);
 	if (!(info->map = (char **)malloc(sizeof(char *) * (info->map_height))))
 		return (print_error("init_map error 1", info));
 	r = 0;
 	info->map_width = get_max_line_size(lst);
-    printf("map_width : %d\n", info->map_width);
 	while (lst)
 	{
 		if (!(info->map[r] = (char *)malloc(sizeof(char) * (info->map_width + 1))))

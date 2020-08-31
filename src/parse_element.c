@@ -45,11 +45,6 @@ int				get_color(t_info *info, char *line, int type)
 		return (print_error("get color error1\n", info));
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
 		return (print_error("get color error 2\n", info));
-    /*
-	printf("rgb[0] size : %d\n", ft_strlen(rgb[0]));
-	printf("rgb[1] size : %d\n", ft_strlen(rgb[1]));
-	printf("rgb[2] size : %d\n", ft_strlen(rgb[2]));
-    */
 	color = 0;
 	i = 0;
 	while (rgb[i])
@@ -68,7 +63,6 @@ int				get_color(t_info *info, char *line, int type)
 
 int			parse_element(t_info *info, char *line)
 {
-    printf("%s\n", line);
 	if (ft_strncmp(line, "R ", 2) == 0)
 		return (get_screen_size(info, line + 2));
 	else if (ft_strncmp(line, "NO ", 3) == 0)

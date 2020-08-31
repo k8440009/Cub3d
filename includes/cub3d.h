@@ -19,7 +19,7 @@
 # include "get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
+// # include <stdio.h>
 # define PI 3.1415926535897
 
 # define TRUE '1'
@@ -104,9 +104,10 @@ int			init_map(t_info *info, t_list *lst);
 /*
 **	parse_cub
 */
-int			parse_cub(t_info *info, char *path);
+int			parse_cub(t_info *info, char *path, char *line);
 int			read_element(t_info *info, char *line);
 int			read_map(t_info *info, char *line);
+
 /*
 **	parse_map
 */

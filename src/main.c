@@ -2,9 +2,9 @@
 
 int		init_data(t_info *info, char *path)
 {
-
+    char    *line;
 	init_info(info);
-	parse_cub(info, path);
+	parse_cub(info, path, line);
 	//init_player(&info->player);
 	//init_player_direction(info);
 	//init_buffer(info);
