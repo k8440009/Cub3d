@@ -3,6 +3,7 @@
 int		init_data(t_info *info, char *path)
 {
     char    *line;
+
 	init_info(info);
 	parse_cub(info, path, line);
 	//init_player(&info->player);

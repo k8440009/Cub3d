@@ -52,6 +52,7 @@ int			parse_cub(t_info *info, char *path, char *line)
     if (!read_map(info, line))
         return (print_error("parse_cub error2", info));
     */
+   /*
     printf("win_width : %d\n", info->win_width);
     printf("win_height : %d\n", info->win_height);
     printf("north texture : %s\n", info->north_texture_path);
@@ -67,6 +68,7 @@ int			parse_cub(t_info *info, char *path, char *line)
             printf("%c", info->map[r][c]);
         printf ("\n");
     }
+    */
     /*
 	if (!read_map(info, line))
 		return (print_error("parse_cub error2", info));

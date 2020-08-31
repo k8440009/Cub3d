@@ -38,9 +38,7 @@ int			parse_map(t_info *info, t_list *lst)
 	if (!fill_map(info, lst))
 		return (print_error("fill_map error0\n", info));
 	ft_lstclear(&lst, free);
-    /*
 	if (!check_valid_map(info))
 		return (print_error("check_valid_map", info));
-        */
 	return (1);
 }
