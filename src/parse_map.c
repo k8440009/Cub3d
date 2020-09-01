@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int			fill_map(t_info *info, t_list *lst)
+int			set_map_data(t_info *info, t_list *lst)
 {
 	int		y;
 	int		x;
@@ -31,14 +31,16 @@ int			fill_map(t_info *info, t_list *lst)
 	return (1);
 }
 
+
 int			parse_map(t_info *info, t_list *lst)
 {
 	if (!init_map(info, lst))
 		return (print_error("init_map error", info));
-	if (!fill_map(info, lst))
-		return (print_error("fill_map error0\n", info));
+	if (!set_map_data(info, lst))
+		return (print_error("fill_map data error0\n", info));
 	ft_lstclear(&lst, free);
-	if (!check_valid_map(info))
-		return (print_error("check_valid_map", info));
+	//if (!check_valid_map(info))
+	//	return (print_error("check_valid_map", info));
+	
 	return (1);
 }

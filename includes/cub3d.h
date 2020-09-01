@@ -104,52 +104,42 @@ int			init_map(t_info *info, t_list *lst);
 /*
 **	parse_cub
 */
-int			parse_cub(t_info *info, char *path, char *line);
-int			read_element(t_info *info, char *line);
-int			read_map(t_info *info, char *line);
-
+int			pre_process_cub(t_info *info, char *path);
+int			parse_element(t_info *info, char *line);
+int			pre_process_map(t_info *info, char *line);
 /*
-**	parse_map
+**	parse_element.c
+*/
+int			parse_element_line(t_info *info, char *line);
+int			get_color(t_info *info, char *line, int type);
+int			get_texture(t_info *info, char *line, int type);
+int			get_screen_size(t_info *info, char *line);
+/*
+**	parse_map.c
 */
 int			parse_map(t_info *info, t_list *lst);
-int			fill_map(t_info *info, t_list *lst);
+int			set_map_data(t_info *info, t_list *lst);
 /*
-**	parse_element
+**	check_map
 */
-int			get_screen_size(t_info *info, char *line);
-int			get_texture(t_info *info, char *line, int type);
-int			get_color(t_info *info, char *line, int type);
-int			parse_element(t_info *info, char *line);
-/*
-**	parse_sprite
-*/
-int			set_sprite(t_info *info);
+int			check_valid_map(t_info *info);
+int			init_visited(t_info *info);
+int			valid_map(t_info *info);
+void		dfs(t_info *info, t_state *state, int r, int c);
 /*
 **	move_player
 */
 void		rotate_player(t_player *player, double rotate_speed);
 /*
-** error
-*/
-// int			print_error(int	error_code, t_info *info);
-int			print_error(char *message, t_info *info);
-/*
 **	utils
 */
 void		free_two_pointer(char **str);
 int			is_map_arg(int c);
-int			get_max_line_size(t_list *lst);;
+int			get_max_line_size(t_list *lst);
 /*
-**	check_element
+** error
 */
-int			check_info(t_info *info);
-/*
-**	check_map
-*/
-int			check_map_left(t_info *info, int y, int x);
-int			check_map_right(t_info *info, int y, int x);
-int			check_map_bottom(t_info *info, int y);
-int			check_map_middle(t_info *info, int y, int x);
-int			check_map_top(t_info *info);
-int			check_valid_map(t_info *info);;
+// int			print_error(int	error_code, t_info *info);
+int			print_error(char *message, t_info *info);
+
 #endif

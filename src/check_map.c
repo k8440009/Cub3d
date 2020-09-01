@@ -50,8 +50,8 @@ int			init_visited(t_info *info)
     
 	if (!(info->visited = (char **)malloc(sizeof(char *) * (info->map_height))))
 		return (print_error("init_visited error 1", info));
-	r = 0;
-	while (r < info->map_height)
+	r = -1;
+	while (++r < info->map_height)
 	{
 		if (!(info->visited[r] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
 			return (print_error("init_visited error 2", info));
@@ -59,7 +59,6 @@ int			init_visited(t_info *info)
 		while (++c < info->map_width)
 			info->visited[r][c] = '0';
 		info->visited[r][info->map_width] = '\0';
-        r++;
 	}
 	return (1);
 }

@@ -1,6 +1,6 @@
 NAME = cub3D
 
-LIBFT = ./libft/libft.a
+# LIBFT = ./libft/libft.a
 
 CC = gcc
 INCS = -I./includes -I./libft -I./mlx

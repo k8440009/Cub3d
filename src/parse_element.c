@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int				get_screen_size(t_info *info, char *line)
+int			get_screen_size(t_info *info, char *line)
 {
 	char	**data;
 	// 인자가 3개 이상일 때 에러 처리 추가
@@ -15,7 +15,7 @@ int				get_screen_size(t_info *info, char *line)
 	return (1);
 }
 
-int				get_texture(t_info *info, char *line, int type)
+int			get_texture(t_info *info, char *line, int type)
 {
 	if (type == NORTH)
 		info->north_texture_path = ft_strdup(line);
@@ -32,7 +32,7 @@ int				get_texture(t_info *info, char *line, int type)
 	return (1);
 }
 
-int				get_color(t_info *info, char *line, int type)
+int			get_color(t_info *info, char *line, int type)
 {
 	char	**rgb;
 	int		color;
@@ -61,7 +61,7 @@ int				get_color(t_info *info, char *line, int type)
 	return (1);
 }
 
-int			parse_element(t_info *info, char *line)
+int			parse_element_line(t_info *info, char *line)
 {
 	if (ft_strncmp(line, "R ", 2) == 0)
 		return (get_screen_size(info, line + 2));
