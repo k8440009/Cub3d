@@ -18,6 +18,8 @@ SRCS =  ./src/get_next_line.c \
 		./src/check_map.c \
 		./src/check_element.c \
 		./src/control_player.c \
+		./src/set_sprite.c \
+		./src/set_texture.c \
 		./src/utils.c
 
 OBJS = $(SRCS:.c=.o)

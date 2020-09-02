@@ -36,6 +36,9 @@
 
 # define FLOOR 1
 # define CEILING 2
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 /*
 **	check element
 */
@@ -49,6 +52,18 @@ typedef struct		s_state
 	int				c;
 	int				flag;
 }					t_state;
+
+typedef struct		s_img
+{
+	void			*img;
+	int				*data;
+	int				size_l;
+	int				bpp;
+	int				endian;
+	int				width;
+	int				height;
+}					t_img;
+
 typedef struct		s_sprite
 {
 	double			y;
@@ -76,6 +91,7 @@ typedef struct		s_info
 	void		*win;
 	t_player	player;
 	t_sprite	*sprite;
+	t_img		img;
 	int			fd;
 	int			win_width;
 	int			win_height;
@@ -92,6 +108,7 @@ typedef struct		s_info
 	int			ceiling_color;
 	int			count_sprite;
 	int			dir;
+	int			**texture;
 }					t_info;
 /*
 **	init.c
@@ -101,6 +118,7 @@ void		init_player(t_player *player);
 void		init_player_direction(t_info *info);
 int			init_direction(t_info *info, int y, int x, int *dir_count);
 int			init_map(t_info *info, t_list *lst);
+int			init_texture(t_info *info);
 /*
 **	parse_cub
 */
@@ -135,9 +153,20 @@ int			check_info(t_info *info);
 */
 void		rotate_player(t_player *player, double rotate_speed);
 /*
+**	set_sprite
+*/
+int			set_sprite(t_info *info);
+int			set_pos_sprite(t_info *info, int idx, int r, int c);
+/*
+**	set_texture
+*/
+void		set_texture(t_info *info);
+void		load_image(t_info *info, int *texture, char *path, t_img *img);
+/*
 **	utils
 */
 void		free_two_pointer(char **str);
+void		ft_free(void *s);
 int			is_map_arg(int c);
 int			get_max_line_size(t_list *lst);
 /*

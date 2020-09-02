@@ -1,5 +1,25 @@
 #include "../includes/cub3d.h"
 
+int			init_texture(t_info *info)
+{
+	int		r;
+
+	if (!(info->texture = (int **)ft_calloc(5, sizeof(int *))))
+		return (0);
+	r = -1;
+	while (++r < 5)
+	{
+		if (!(info->texture[r] = (int *)ft_calloc(TEXTURE_HEIGHT * TEXTURE_WIDTH, sizeof(int))))
+			return (0);
+	}
+	return (1);
+}
+
+int			init_buffer(t_info *info)
+{
+	return (1);
+}
+
 int			init_map(t_info *info, t_list *lst)
 {
 	int		r;

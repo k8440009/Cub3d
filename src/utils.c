@@ -25,6 +25,12 @@ int			is_map_arg(int c)
 	return (0); 
 }
 
+void		ft_free(void *s)
+{
+	free(s);
+	s = 0;
+}
+
 void		free_two_pointer(char **str)
 {
 	int		i;

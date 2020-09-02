@@ -104,6 +104,6 @@ int			check_valid_map(t_info *info)
             printf("%c", info->visited[r][c]);
         printf ("\n");
 	}
-	free_two_pointer(info->visited);
+	// free_two_pointer(info->visited);
 	return (1);
 }
