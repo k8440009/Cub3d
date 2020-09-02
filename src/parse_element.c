@@ -10,6 +10,7 @@ int			get_screen_size(t_info *info, char *line)
 		return (print_error("split 2 error", info));
 	info->win_width = ft_atoi(data[0]);
 	info->win_height = ft_atoi(data[1]);
+	free_two_pointer(data);
 	if (info->win_width <= 0 || info->win_height <= 0)
 		return (print_error("split 3 error", info));
 	return (1);

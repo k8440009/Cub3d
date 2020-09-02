@@ -37,10 +37,13 @@ int			parse_map(t_info *info, t_list *lst)
 	if (!init_map(info, lst))
 		return (print_error("init_map error", info));
 	if (!set_map_data(info, lst))
-		return (print_error("fill_map data error0\n", info));
+		return (print_error("set_map_data error\n", info));
 	ft_lstclear(&lst, free);
-	//if (!check_valid_map(info))
-	//	return (print_error("check_valid_map", info));
-	
+	if (!check_valid_map(info))
+		return (print_error("check_valid_map error", info));
+	if (!check_info(info))
+		return (print_error("check info error", info));
+	if (!set_sprite(info))
+		return (print_error("set sprite error", info));
 	return (1);
 }

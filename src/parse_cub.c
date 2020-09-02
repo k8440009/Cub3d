@@ -14,6 +14,7 @@ int			pre_process_map(t_info *info, char *line)
 		free(line);
 	}
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
+	free(line);
     if (!parse_map(info, lst))
         return (print_error("read_map error1\n", info));
 	return (1);

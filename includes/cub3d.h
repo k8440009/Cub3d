@@ -127,6 +127,10 @@ int			init_visited(t_info *info);
 int			valid_map(t_info *info);
 void		dfs(t_info *info, t_state *state, int r, int c);
 /*
+**	check_element
+*/
+int			check_info(t_info *info);
+/*
 **	move_player
 */
 void		rotate_player(t_player *player, double rotate_speed);

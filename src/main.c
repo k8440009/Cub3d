@@ -17,12 +17,6 @@ int		init_data(t_info *info, char *path)
     printf("ceiling_color : %d\n", info->ceiling_color);
 	printf("map_height : %d\n", info->map_height);
 	printf("map_width : %d\n", info->map_width);
-    for (int r = 0; r < info->map_height; r++)
-    {
-        for(int c = 0; c < info->map_width; c++)
-            printf("%c", info->map[r][c]);
-        printf ("\n");
-    }
 	return (1);
 }
 
