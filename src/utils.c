@@ -1,5 +1,25 @@
 #include "../includes/cub3d.h"
 
+int			free_cub(t_info *info)
+{
+	if (info->img.img)
+		mlx_destroy_image(info->mlx, info->img.img);
+	if (info->sprite)
+		ft_free(info->sprite);
+	if (info->buf)
+		free_two_pointer((void *)info->buf);
+	if (info->z_buf)
+		ft_free(info->z_buf);
+	if (info->texture)
+		ft_free(info->texture);
+	if (info->map)
+		free_two_pointer(info->map);
+	if (info->mlx && info->win)
+		mlx_destroy_window(info->mlx, info->win);
+	ft_exit(0);
+	return (0);
+}
+
 int			ft_exit(int ret)
 {
 	exit(ret);

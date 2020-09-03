@@ -41,9 +41,5 @@ int			parse_map(t_info *info, t_list *lst)
 	ft_lstclear(&lst, free);
 	if (!check_valid_map(info))
 		return (print_error("check_valid_map error", info));
-	if (!check_info(info))
-		return (print_error("check info error", info));
-	if (!set_sprite(info))
-		return (print_error("set sprite error", info));
 	return (1);
 }

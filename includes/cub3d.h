@@ -230,6 +230,7 @@ void		ft_free(void *s);
 int			is_map_arg(int c);
 int			get_max_line_size(t_list *lst);
 int			ft_exit(int ret);
+int			free_cub(t_info *info);
 /*
 ** error
 */

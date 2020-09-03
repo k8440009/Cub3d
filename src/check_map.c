@@ -92,6 +92,6 @@ int			check_valid_map(t_info *info)
 		return (print_error("check_valid_map error 2", info)); 
 	if (!(valid_map(info)))
 		return (print_error("check_valid_map error 3", info));
-	//free_two_pointer(info->visited);
+	// free_two_pointer(info->visited);
 	return (1);
 }

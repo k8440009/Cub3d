@@ -9,7 +9,7 @@ void		draw_texture(t_info *info)
 	while (++y < info->win_height)
 	{
 		x = -1;
-		while (++ x < info->win_width)
+		while (++x < info->win_width)
 			info->img.data[info->win_width * y + x] = info->buf[y][x];
 	}
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);

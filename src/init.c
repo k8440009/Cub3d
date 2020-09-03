@@ -102,8 +102,8 @@ void		init_player(t_player *player)
 	player->vec_dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.66;
-	player->move_speed = 0.05;
-	player->rotate_speed = 0.05;
+	player->move_speed = 0.1;
+	player->rotate_speed = 0.1;
 }
 
 void		init_info(t_info *info)

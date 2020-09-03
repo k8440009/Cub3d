@@ -59,11 +59,9 @@ void		calculate_step_and_side_dist(t_player *player, t_ray *ray)
 	}
 	else
 	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
 	}
-	
-	
 }
 
 void		init_ray(t_info *info, t_player *player, t_ray *ray, int x)

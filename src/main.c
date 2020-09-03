@@ -24,12 +24,11 @@ int		process_option(t_info *info, int option)
 int		init_data(t_info *info, char *path)
 {
 
-	init_info(info);	// info 초기화
+	init_player(&info->player);
 	if (!pre_process_cub(info, path))	// cub 전처리
 		return (print_error("pre_process_cub error", info));
 	init_player_direction(info);
 	info->mlx = mlx_init();
-	// 버퍼는 왜 넣는지 모르니 아직 작성 x
 	if (!init_buffer(info))
 		return (print_error("init_buffer error", info));
 	if (!init_texture(info))
@@ -63,6 +62,6 @@ int		main(int argc, char **argv)
 		return (print_error("init_data error", &info));
 	if (!process_option(&info, option))
 		return (print_error("process_option error", &info));
-	// free_cub(&info);
+	free_cub(&info);
 	return (0);
 }
