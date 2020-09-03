@@ -92,18 +92,6 @@ int			check_valid_map(t_info *info)
 		return (print_error("check_valid_map error 2", info)); 
 	if (!(valid_map(info)))
 		return (print_error("check_valid_map error 3", info));
-	for (int r = 0; r < info->map_height; r++)
-    {
-        for(int c = 0; c < info->map_width; c++)
-            printf("%c", info->map[r][c]);
-        printf ("\n");
-    }
-	for (int r = 0; r < info->map_height; r++)
-    {
-        for(int c = 0; c < info->map_width; c++)
-            printf("%c", info->visited[r][c]);
-        printf ("\n");
-	}
-	// free_two_pointer(info->visited);
+	//free_two_pointer(info->visited);
 	return (1);
 }

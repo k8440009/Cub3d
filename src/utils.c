@@ -1,5 +1,11 @@
 #include "../includes/cub3d.h"
 
+int			ft_exit(int ret)
+{
+	exit(ret);
+	return (ret);
+}
+
 int			get_max_line_size(t_list *lst)
 {
 	int		max_size;

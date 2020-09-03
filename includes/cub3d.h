@@ -17,9 +17,12 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
+# include "key_macos.h"
 # include <math.h>
 # include <fcntl.h>
-// # include <stdio.h>
+
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_EXIT 17
 # define PI 3.1415926535897
 
 # define TRUE '1'
@@ -71,14 +74,41 @@ typedef struct		s_sprite
 	double			distance;
 }					t_sprite;
 
+typedef struct		s_ray
+{
+	double			camera_x;
+	double			vec_dir_x;
+	double			vec_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				texture_num;
+	double			wall_x;
+	double			step;
+	double			texture_pos;
+	int				texture_x;
+	int				texture_y;
+}					t_ray;
+
 typedef struct		s_player
 {
 	int				start_r;
 	int				start_c;
 	double			x;
 	double			y;
-	double			dir_x;
-	double			dir_y;
+	double			vec_dir_x;
+	double			vec_dir_y;
 	double			plane_x;
 	double			plane_y;
 	double			move_speed;
@@ -92,6 +122,7 @@ typedef struct		s_info
 	t_player	player;
 	t_sprite	*sprite;
 	t_img		img;
+	t_ray		ray;
 	int			fd;
 	int			win_width;
 	int			win_height;
@@ -109,6 +140,8 @@ typedef struct		s_info
 	int			count_sprite;
 	int			dir;
 	int			**texture;
+	int			**buf;
+	double		*z_buf;
 }					t_info;
 /*
 **	init.c
@@ -118,6 +151,7 @@ void		init_player(t_player *player);
 void		init_player_direction(t_info *info);
 int			init_direction(t_info *info, int y, int x, int *dir_count);
 int			init_map(t_info *info, t_list *lst);
+int			init_buffer(t_info *info);
 int			init_texture(t_info *info);
 /*
 **	parse_cub
@@ -153,15 +187,41 @@ int			check_info(t_info *info);
 */
 void		rotate_player(t_player *player, double rotate_speed);
 /*
-**	set_sprite
+**	set_sprite.c
 */
 int			set_sprite(t_info *info);
 int			set_pos_sprite(t_info *info, int idx, int r, int c);
 /*
-**	set_texture
+**	set_texture.c
 */
 void		set_texture(t_info *info);
 void		load_image(t_info *info, int *texture, char *path, t_img *img);
+void		cast_floor_ceiling(t_info *info);
+/*
+**	main_loop.c
+*/
+int			main_loop(t_info *info);
+/*
+**	ray_casting
+*/
+void		raycasting(t_info *info);
+void		init_ray(t_info *info, t_player *player, t_ray *ray, int x);
+void		calculate_step_and_side_dist(t_player *player, t_ray *ray);
+void		calculate_wall_distance(t_player *player, t_ray *ray);
+void		calculate_wall_height(t_info *info, t_ray *ray);
+/*
+**	draw
+*/
+void		get_wall_texture(t_player *player, t_ray *ray);
+void		get_wall_color(t_info *info, t_ray *ray, int x);
+void		draw_texture(t_info *info);
+/*
+**	key_handling
+*/
+int			key_press(int key, t_info *info);
+void		rotate_player(t_player *player, double rotate_speed);
+void		move_player(t_info *info, t_player *player, double move_speed);
+void		move_player_left_right(t_info *info, t_player *player, double move_speed);
 /*
 **	utils
 */
@@ -169,6 +229,7 @@ void		free_two_pointer(char **str);
 void		ft_free(void *s);
 int			is_map_arg(int c);
 int			get_max_line_size(t_list *lst);
+int			ft_exit(int ret);
 /*
 ** error
 */

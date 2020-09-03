@@ -17,6 +17,18 @@ int			init_texture(t_info *info)
 
 int			init_buffer(t_info *info)
 {
+	int		r;
+
+	if (!(info->buf = ft_calloc(info->win_height, sizeof(int **))))
+		return (print_error("init_buffer error1", info));
+	r = -1;
+	while (++r < info->win_height)
+	{
+		if (!(info->buf[r] = ft_calloc(info->win_width, sizeof(int *))))
+			return (print_error("init_buffer error2", info));
+	}
+	if (!(info->z_buf = ft_calloc(info->win_width, sizeof(double *))))
+		return (print_error("init_buffer error3", info));
 	return (1);
 }
 
@@ -86,8 +98,8 @@ void		init_player(t_player *player)
 {
 	player->x = 2;
 	player->y = 5;
-	player->dir_x = -1.0;
-	player->dir_y = 0.0;
+	player->vec_dir_x = -1.0;
+	player->vec_dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.66;
 	player->move_speed = 0.05;
@@ -96,7 +108,6 @@ void		init_player(t_player *player)
 
 void		init_info(t_info *info)
 {
-	info->sprite = NULL;
 	info->win_width = 0;
 	info->win_height = 0;
 	info->map_width = 0;
@@ -109,4 +120,7 @@ void		init_info(t_info *info)
 	info->floor_color = 0;
 	info->ceiling_color = 0;
 	info->count_sprite = 0;
+	info->sprite = NULL;
+	info->buf = NULL;
+	info->z_buf = NULL;
 }

@@ -1,5 +1,24 @@
 #include "../includes/cub3d.h"
 
+void		cast_floor_ceiling(t_info *info)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < info->win_height)
+	{
+		x = -1;
+		while (++x < info->win_width)
+		{
+			if (y > info->win_height / 2)
+				info->buf[y][x] = info->floor_color;
+			else
+				info->buf[y][x] = info->ceiling_color;
+		}
+	}
+}
+
 void		load_image(t_info *info, int *texture, char *path, t_img *img)
 {
 	int		r;
