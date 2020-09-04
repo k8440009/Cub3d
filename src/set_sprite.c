@@ -16,6 +16,7 @@ int			set_sprite(t_info *info)
 	if (!(info->sprite = (t_sprite *)calloc(info->count_sprite, sizeof(t_sprite))))
 		return (print_error("set_sprite memory error", info));
 	r = -1;
+	idx = 0;
 	while (++r < info->map_height)
 	{
 		c = -1;

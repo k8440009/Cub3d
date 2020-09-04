@@ -28,12 +28,14 @@ void		perform_dda(t_info *info, t_ray *ray)
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
 			ray->side = (ray->step_x == -1) ? 0 : 1;
+			//ray->side = 0;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
 			ray->side = (ray->step_y == -1) ? 2 : 3;
+			//ray->side = 1;
 		}
 		if (info->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
@@ -92,6 +94,5 @@ void		raycasting(t_info *info)
 		get_wall_texture(&info->player, &info->ray);
 		get_wall_color(info, &info->ray, x);
 		info->z_buf[x] = info->ray.perp_wall_dist;
-		x++;
 	}
 }

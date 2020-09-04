@@ -5,7 +5,7 @@ NAME = cub3D
 CC = gcc
 INCS = -I./includes -I./libft -I./mlx
 INCLIB = -Lmlx -lmlx -framework OpenGL -framework Appkit -Llibft -lft
-# CFLAGS = -Wall -Werror -Wextra $(INCS)
+CFLAGS = -Wall -Werror -Wextra $(INCS)
 LIBFT = ./libft
 
 SRCS =  ./src/get_next_line.c \

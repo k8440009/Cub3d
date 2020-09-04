@@ -40,11 +40,10 @@ void		set_texture(t_info *info)
 {
 	t_img	img;
 
-	
-	load_image(info, info->texture[0], info->north_texture_path, &img);
+	load_image(info, info->texture[0], info->west_texture_path, &img);
 	load_image(info, info->texture[1], info->east_texture_path, &img);
-	load_image(info, info->texture[2], info->south_texture_path, &img);
-	load_image(info, info->texture[3], info->west_texture_path, &img);
+	load_image(info, info->texture[2], info->north_texture_path, &img);
+	load_image(info, info->texture[3], info->south_texture_path, &img);
 	load_image(info, info->texture[4], info->sprite_texture_path, &img);
 	ft_free(info->north_texture_path);
 	ft_free(info->east_texture_path);

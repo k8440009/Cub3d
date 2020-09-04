@@ -8,6 +8,7 @@ int			valid_map(t_info *info)
 	r = -1;
 	while (++r < info->map_height)
 	{
+		c = -1;
 		while (++c < info->map_width)
 		{
 			if (info->map[r][c] == ' ' && info->visited[r][c] == TRUE)
@@ -83,7 +84,6 @@ int			check_valid_map(t_info *info)
 {
 	t_state		state;
 
-    int r, c;
 	if (!init_visited(info))
 		return (print_error("check_valid_map error 1", info));
 	init_state(info, &state);
