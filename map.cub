@@ -1,10 +1,10 @@
-R 640 480
+R 1280 960
 NO ./textures/redbrick.xpm
 SO ./textures/bluestone.xpm
 WE ./textures/colorstone.xpm
 EA ./textures/mossy.xpm
 
-S ./textures/barrel.xpm
+S ./textures/sad_cat1.xpm
 F 30,225,0
 C 0,0,220
 

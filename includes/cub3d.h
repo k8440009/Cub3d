@@ -74,6 +74,26 @@ typedef struct		s_sprite
 	double			distance;
 }					t_sprite;
 
+typedef struct		s_sprite_ray
+{
+	double					x;
+	double					y;
+	double					inversion_detection;
+	double					transform_x;
+	double					transform_y;
+	int						screen_x;
+	int						v_move_screen;
+	int						height;
+	int						width;
+	int						draw_start_x;
+	int						draw_start_y;
+	int						draw_end_x;
+	int						draw_end_y;
+	int						texture_x;
+	int						texture_y;
+}						t_sprite_ray;
+
+
 typedef struct		s_ray
 {
 	double			camera_x;
@@ -117,31 +137,32 @@ typedef struct		s_player
 
 typedef struct		s_info
 {
-	void		*mlx;
-	void		*win;
-	t_player	player;
-	t_sprite	*sprite;
-	t_img		img;
-	t_ray		ray;
-	int			fd;
-	int			win_width;
-	int			win_height;
-	int			map_width;
-	int			map_height;
-	char		**map;
-	char		**visited;
-	char		*north_texture_path;
-	char		*south_texture_path;
-	char		*west_texture_path;
-	char		*east_texture_path;
-	char		*sprite_texture_path;
-	int			floor_color;
-	int			ceiling_color;
-	int			count_sprite;
-	int			dir;
-	int			**texture;
-	int			**buf;
-	double		*z_buf;
+	void			*mlx;
+	void			*win;
+	t_player		player;
+	t_sprite		*sprite;
+	t_img			img;
+	t_ray			ray;
+	t_sprite_ray	s_ray;
+	int				fd;
+	int				win_width;
+	int				win_height;
+	int				map_width;
+	int				map_height;
+	char			**map;
+	char			**visited;
+	char			*north_texture_path;
+	char			*south_texture_path;
+	char			*west_texture_path;
+	char			*east_texture_path;
+	char			*sprite_texture_path;
+	int				floor_color;
+	int				ceiling_color;
+	int				count_sprite;
+	int				dir;
+	int				**texture;
+	int				**buf;
+	double			*z_buf;
 }					t_info;
 /*
 **	init.c
@@ -197,6 +218,11 @@ int			set_pos_sprite(t_info *info, int idx, int r, int c);
 void		set_texture(t_info *info);
 void		load_image(t_info *info, int *texture, char *path, t_img *img);
 void		cast_floor_ceiling(t_info *info);
+void		sort_sprite(t_info *info, t_player *player);
+void		translate_sprite(t_info *info, t_player *player, t_sprite_ray *s_ray, int i);
+void		calculate_sprite_width(t_info *info, t_sprite_ray *s_ray);
+void		calculate_sprite_height(t_info *info, t_sprite_ray *s_ray);
+void		get_sprite_color(t_info *info, t_sprite_ray *s_ray, int stripe);
 /*
 **	main_loop.c
 */
@@ -231,6 +257,7 @@ int			is_map_arg(int c);
 int			get_max_line_size(t_list *lst);
 int			ft_exit(int ret);
 int			free_cub(t_info *info);
+void		info_sort(t_info *info);
 /*
 ** error
 */

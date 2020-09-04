@@ -1,5 +1,33 @@
 #include "../includes/cub3d.h"
 
+void		info_sort(t_info *info)
+{
+	int			i;
+	int			j;
+	int			max;
+	t_sprite	temp;
+
+	i = 0;
+	max = 0;
+	while (i < info->count_sprite - 1)
+	{
+		j = i + 1;
+		while (j < info->count_sprite)
+		{
+			if (info->sprite[j].distance > info->sprite[i].distance)
+				max = j;
+			j++;
+		}
+		if (i != max)
+		{
+			temp = info->sprite[i];
+			info->sprite[i] = info->sprite[max];
+			info->sprite[max] = temp;
+		}
+		i++;
+	}
+}
+
 int			free_cub(t_info *info)
 {
 	if (info->img.img)
