@@ -11,3 +11,9 @@ cub3d 진행 상황
 []
 
 3. add sprite
+4.
+while ; 
+do leaks 프로세스id; 
+sleep 3; 
+clear; 
+done

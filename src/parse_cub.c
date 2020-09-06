@@ -36,10 +36,16 @@ int			pre_process_cub(t_info *info, char *path)
 			return (print_error("read element error1", info));
 		free(line);
 	}
+	if (!check_element(info))
+		return (print_error("check element error", info));
 	if (!pre_process_map(info, line))
 		return (print_error("pree_process_cub1 error", info));
+	//if (!check_map(info))
+	//	return (print_error("check element error", info));
+	/*
 	if (!check_info(info))
 		return (print_error("check info error", info));
+		*/
 	if (!set_sprite(info))
 		return (print_error("set sprite error", info));
 	return (1);

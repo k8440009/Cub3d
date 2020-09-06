@@ -60,8 +60,10 @@ int		main(int argc, char **argv)
 	option = (argc >= 2 && (ft_strncmp(argv[1], "--save", 6) == 0)) ? 1 : 0;
 	if (!init_data(&info, argv[1]))
 		return (print_error("init_data error", &info));
+	/*
 	if (!process_option(&info, option))
 		return (print_error("process_option error", &info));
 	free_cub(&info);
+	*/
 	return (0);
 }

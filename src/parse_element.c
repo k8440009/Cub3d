@@ -1,18 +1,48 @@
 #include "../includes/cub3d.h"
 
+int			check_str_digit(char *data)
+{
+	int		idx;
+
+	idx = -1;
+	while (data[++idx])
+	{
+		if (!ft_isdigit(data[idx]))
+			return (0);
+	}
+	return (1);
+}
+
+int			check_split_size(char **data, int cur_size)
+{
+	int		size = 0;
+
+	while (*data)
+	{
+		size++;
+		data++;
+	}
+	if (cur_size != size)
+		return (0);
+	return (1);
+}
+
 int			get_screen_size(t_info *info, char *line)
 {
 	char	**data;
-	// 인자가 3개 이상일 때 에러 처리 추가
+
 	if (!(data = ft_split(line, ' ')))
-		return (print_error("split 1 error", info));
-	if (!data || !data[0] || !data[1])
-		return (print_error("split 2 error", info));
+		return (print_error("split error", info));
+	if (!data || !check_split_size(data, 2))
+		return (print_error("split size error", info));
+	if (!check_str_digit(data[0]) || !check_str_digit(data[1]))
+		return (print_error("split data error", info));
 	info->win_width = ft_atoi(data[0]);
 	info->win_height = ft_atoi(data[1]);
 	free_two_pointer(data);
 	if (info->win_width <= 0 || info->win_height <= 0)
-		return (print_error("split 3 error", info));
+		return (print_error("get_screen_size error (win_size)\n", info));
+	info->flag_cnt += 1;
 	return (1);
 }
 
@@ -30,6 +60,7 @@ int			get_texture(t_info *info, char *line, int type)
 		info->sprite_texture_path = ft_strdup(line);
 	else
 		return (print_error("texture error", info));
+	info->flag_cnt += 1;
 	return (1);
 }
 
@@ -39,13 +70,12 @@ int			get_color(t_info *info, char *line, int type)
 	int		color;
 	int		i;
 
-	/*
-	** isprint를 사용하여 출력 가능한 곳만 남기고
-	*/
 	if (!(rgb = ft_split(line, ',')))
 		return (print_error("get color error1\n", info));
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
-		return (print_error("get color error 2\n", info));
+	if (!rgb || !check_split_size(rgb, 3))
+		return (print_error("get color split size error\n", info));
+	if (!check_str_digit(rgb[0]) || !check_str_digit(rgb[1]) || !check_str_digit(rgb[2]))
+		return (print_error("get color str digit error\n", info));
 	color = 0;
 	i = 0;
 	while (rgb[i])
@@ -59,6 +89,7 @@ int			get_color(t_info *info, char *line, int type)
 		info->floor_color = color;
 	else if (type == CEILING)
 		info->ceiling_color = color;
+	info->flag_cnt += 1;
 	return (1);
 }
 

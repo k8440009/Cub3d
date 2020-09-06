@@ -149,6 +149,7 @@ typedef struct		s_info
 	int				win_height;
 	int				map_width;
 	int				map_height;
+	int				flag_cnt;
 	char			**map;
 	char			**visited;
 	char			*north_texture_path;
@@ -202,7 +203,7 @@ void		dfs(t_info *info, t_state *state, int r, int c);
 /*
 **	check_element
 */
-int			check_info(t_info *info);
+int			check_element(t_info *info);
 /*
 **	move_player
 */

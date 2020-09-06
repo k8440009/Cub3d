@@ -112,7 +112,9 @@ void		init_info(t_info *info)
 	info->win_height = 0;
 	info->map_width = 0;
 	info->map_height = 0;
+	info->flag_cnt = 0;
 	info->map = NULL;
+	info->visited = NULL;
 	info->north_texture_path = NULL;
 	info->south_texture_path = NULL;
 	info->west_texture_path = NULL;
