@@ -106,13 +106,26 @@ void		init_player(t_player *player)
 	player->rotate_speed = 0.1;
 }
 
+void		init_flag(t_flag *flag)
+{
+	flag->cnt = 0;
+	flag->flag_r = 0;
+	flag->flag_c = 0;
+	flag->flag_no = 0;
+	flag->flag_ea = 0;
+	flag->flag_so = 0;
+	flag->flag_we = 0;
+	flag->flag_s = 0;
+	flag->flag_f = 0;
+	flag->flag_c = 0;
+}
+
 void		init_info(t_info *info)
 {
 	info->win_width = 0;
 	info->win_height = 0;
 	info->map_width = 0;
 	info->map_height = 0;
-	info->flag_cnt = 0;
 	info->map = NULL;
 	info->visited = NULL;
 	info->north_texture_path = NULL;
@@ -125,4 +138,5 @@ void		init_info(t_info *info)
 	info->sprite = NULL;
 	info->buf = NULL;
 	info->z_buf = NULL;
+	init_flag(&info->flag);
 }

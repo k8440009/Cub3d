@@ -33,6 +33,8 @@ int			get_screen_size(t_info *info, char *line)
 {
 	char	**data;
 
+	if (info->flag.flag_r == 1)
+		return (print_error("duplicate win size error", info));
 	if (!(data = ft_split(line, ' ')))
 		return (print_error("split error", info));
 	if (!data || !check_split_size(data, 2))
@@ -44,25 +46,41 @@ int			get_screen_size(t_info *info, char *line)
 	free_two_pointer(data);
 	if (info->win_width <= 0 || info->win_height <= 0)
 		return (print_error("get_screen_size error (win_size)\n", info));
-	info->flag_cnt += 1;
+	info->flag.cnt += 1;
+	info->flag.flag_r = TRUE;
 	return (1);
 }
 
 int			get_texture(t_info *info, char *line, int type)
 {
-	if (type == NORTH)
+	if (!info->flag.flag_no && type == NORTH)
+	{
 		info->north_texture_path = ft_strdup(line);
-	else if (type == EAST)
+		info->flag.flag_no = 1;
+	}
+	else if (!info->flag.flag_ea && type == EAST)
+	{
 		info->east_texture_path = ft_strdup(line);
-	else if (type == SOUTH)
+		info->flag.flag_ea = 1;
+	}
+	else if (!info->flag.flag_so && type == SOUTH)
+	{
 		info->south_texture_path = ft_strdup(line);
-	else if (type == WEST)
+		info->flag.flag_so = 1;
+	}
+	else if (!info->flag.flag_we && type == WEST)
+	{
 		info->west_texture_path = ft_strdup(line);
-	else if (type == SPRITE)
+		info->flag.flag_we = 1;
+	}
+	else if (!info->flag.flag_s && type == SPRITE)
+	{
 		info->sprite_texture_path = ft_strdup(line);
+		info->flag.flag_s = 1;
+	}
 	else
-		return (print_error("texture error", info));
-	info->flag_cnt += 1;
+		return (print_error("get_texture error", info));
+	info->flag.cnt += 1;
 	return (1);
 }
 
@@ -91,11 +109,19 @@ int			get_color(t_info *info, char *line, int type)
 		i++;
 	}
 	free_two_pointer(rgb);
-	if (type == FLOOR)
+	if (!info->flag.flag_f && type == FLOOR)
+	{
 		info->floor_color = color;
-	else if (type == CEILING)
+		info->flag.flag_f = 1;
+	}
+	else if (!info->flag.flag_c && type == CEILING)
+	{
 		info->ceiling_color = color;
-	info->flag_cnt += 1;
+		info->flag.flag_c = 1;
+	}
+	else
+		return (print_error("duplicaet rgb color error\n", info));
+	info->flag.cnt += 1;
 	return (1);
 }
 

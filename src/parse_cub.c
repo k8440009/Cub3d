@@ -26,7 +26,6 @@ int			pre_process_cub(t_info *info, char *path)
 	int			ret1;
 	int			ret2;
 
-	init_info(info);
 	info->fd = open(path, O_RDONLY);
 	while ((ret1 = get_next_line(info->fd, &line)) > 0)
 	{

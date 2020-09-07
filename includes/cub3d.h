@@ -137,6 +137,19 @@ typedef struct		s_player
 	double			rotate_speed;
 }					t_player;
 
+typedef struct		s_flag
+{
+	int				cnt;
+	int				flag_r;
+	int				flag_no;
+	int				flag_so;
+	int				flag_we;
+	int				flag_ea;
+	int				flag_s;
+	int				flag_f;
+	int				flag_c;
+}					t_flag;
+
 typedef struct		s_info
 {
 	void			*mlx;
@@ -146,12 +159,12 @@ typedef struct		s_info
 	t_img			img;
 	t_ray			ray;
 	t_sprite_ray	s_ray;
+	t_flag			flag;
 	int				fd;
 	int				win_width;
 	int				win_height;
 	int				map_width;
 	int				map_height;
-	int				flag_cnt;
 	char			**map;
 	char			**visited;
 	char			*north_texture_path;
@@ -177,6 +190,7 @@ int			init_direction(t_info *info, int y, int x, int *dir_count);
 int			init_map(t_info *info, t_list *lst);
 int			init_buffer(t_info *info);
 int			init_texture(t_info *info);
+void		init_flag(t_flag *flag);
 /*
 **	parse_cub
 */
