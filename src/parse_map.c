@@ -16,7 +16,7 @@ int			set_map_data(t_info *info, t_list *lst)
 		while (++x < (int)ft_strlen(line))
 		{
 			if (!is_map_arg(line[x]))
-				return (print_error("fill_map error1\n", info));
+				return (print_error("map argument error\n", info));
 			info->map[y][x] = line[x];
 			if (info->map[y][x] == '2')
 				info->count_sprite++;

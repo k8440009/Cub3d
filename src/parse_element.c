@@ -1,12 +1,14 @@
 #include "../includes/cub3d.h"
 
-int			check_str_digit(char *data)
+int			check_str_digit(char *data, int type)
 {
 	int		idx;
 
 	idx = -1;
 	while (data[++idx])
 	{
+		if (type == COLOR && data[idx] == ' ')
+			continue;
 		if (!ft_isdigit(data[idx]))
 			return (0);
 	}
@@ -35,7 +37,7 @@ int			get_screen_size(t_info *info, char *line)
 		return (print_error("split error", info));
 	if (!data || !check_split_size(data, 2))
 		return (print_error("split size error", info));
-	if (!check_str_digit(data[0]) || !check_str_digit(data[1]))
+	if (!check_str_digit(data[0], 0) || !check_str_digit(data[1], 0))
 		return (print_error("split data error", info));
 	info->win_width = ft_atoi(data[0]);
 	info->win_height = ft_atoi(data[1]);
@@ -69,19 +71,23 @@ int			get_color(t_info *info, char *line, int type)
 	char	**rgb;
 	int		color;
 	int		i;
+	int		tmp;
 
 	if (!(rgb = ft_split(line, ',')))
 		return (print_error("get color error1\n", info));
 	if (!rgb || !check_split_size(rgb, 3))
 		return (print_error("get color split size error\n", info));
-	if (!check_str_digit(rgb[0]) || !check_str_digit(rgb[1]) || !check_str_digit(rgb[2]))
+	if (!check_str_digit(rgb[0], COLOR) || !check_str_digit(rgb[1], COLOR) || !check_str_digit(rgb[2], COLOR))
 		return (print_error("get color str digit error\n", info));
 	color = 0;
 	i = 0;
 	while (rgb[i])
 	{
 		color *= 256;
-		color += ft_atoi(rgb[i]);
+		tmp = ft_atoi(rgb[i]);
+		if (tmp < 0 || tmp > 255)
+			return (print_error("rgb color error\n", info));
+		color += tmp;
 		i++;
 	}
 	free_two_pointer(rgb);

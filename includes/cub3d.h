@@ -40,6 +40,8 @@
 # define FLOOR 1
 # define CEILING 2
 
+# define COLOR 1
+
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 /*
