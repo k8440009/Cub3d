@@ -84,6 +84,7 @@ $(NAME): ${HEAD} ${OBJS}
 
 clean:
 		rm -rf ${OBJS}
+		rm *.o
 
 fclean:	clean
 		rm -rf ${NAME}
