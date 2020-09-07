@@ -204,6 +204,7 @@ void		dfs(t_info *info, t_state *state, int r, int c);
 **	check_element
 */
 int			check_element(t_info *info);
+int			check_map(t_info *info);
 /*
 **	move_player
 */
@@ -216,8 +217,8 @@ int			set_pos_sprite(t_info *info, int idx, int r, int c);
 /*
 **	set_texture.c
 */
-void		set_texture(t_info *info);
-void		load_image(t_info *info, int *texture, char *path, t_img *img);
+int			set_texture(t_info *info);
+int			load_image(t_info *info, int *texture, char *path, t_img *img);
 void		cast_floor_ceiling(t_info *info);
 void		sort_sprite(t_info *info, t_player *player);
 void		translate_sprite(t_info *info, t_player *player, t_sprite_ray *s_ray, int i);

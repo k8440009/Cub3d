@@ -1,12 +1,25 @@
 #include "../includes/cub3d.h"
 
+int			check_map(t_info *info)
+{
+	if (info->map_width <= 0 || info->map_height <= 0)
+		return (print_error("check_map size error", info));
+	return (1);
+}
+
 int			check_element(t_info *info)
 {
 	if (info->flag_cnt != 8)
-		return (print_error("check_info flag cnt", info));
-	if (info->win_width <= 0 || info->win_height <= 0 || info->map_width <= 0 || info->map_height <= 0 || info->floor_color <= 0 || info->ceiling_color <= 0)
-		return (print_error("check_info error1", info));
+		return (print_error("check_element flag cnt", info));
+	if (info->win_width <= 0 || info->win_height <= 0 || info->floor_color <= 0 || info->ceiling_color <= 0)
+	{
+		printf("win_width : %d\n", info->win_width);
+		printf("win_height : %d\n", info->win_height);
+		printf("floor_color : %d\n", info->floor_color);
+		printf("ceiling_color : %d\n", info->ceiling_color);
+		return (print_error("check_element size error", info));
+	}
 	if (!info->north_texture_path || !info->east_texture_path || !info->west_texture_path || !info->south_texture_path || !info->sprite_texture_path || !info->floor_color)
-		return (print_error("check_info error2", info));
+		return (print_error("check_element texture path error", info));
 	return (1);
 }

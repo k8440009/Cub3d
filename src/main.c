@@ -33,7 +33,8 @@ int		init_data(t_info *info, char *path)
 		return (print_error("init_buffer error", info));
 	if (!init_texture(info))
 		return (print_error("init_texture error", info));
-	set_texture(info);
+	if (!set_texture(info))
+		return (print_error("set_texture error", info));
 	info->img.img = mlx_new_image(info->mlx, info->win_width, info->win_height);
 	info->img.data = (int *)mlx_get_data_addr(info->img.img, &info->img.bpp, &info->img.size_l, &info->img.endian);
 /*
