@@ -1,19 +1,19 @@
-cub3d 진행 상황
+bug report
 
-1. cub parsing
-[x] element
-[x] map
-[x] map check
-[x] bug_fix
+[x] 1. 벽 텍스처가 방향과 일치 하지 않음
+-> 벽 텍스처 path를 고쳐주면 해결 가능
+-> 해결
+[x] 2. 벽의 해상도가 낮음
+-> win_width만큼 증가시켜주는 변수를 두번 더해주고 있었음
+-> 해결
+[] 3. sprite가 겹쳐 보이거나, 계속 띄워주고 있는 경우
+-> 코드를 공부 더 해야 해결 할 수 있을 듯
 
-2. raycasting
-[x] load texture
-[]
+1. parse_cub
+1) element 연산자 체크
+[x] 인자가 2개가 아닌경우
+[x] 해상도 크기에 숫자가 아닌 값이 들어간 경우
+[x] 대문자가 아닌 경우
+[x] 데이터가 중복되어 들어 가는 경우
 
-3. add sprite
-4.
-while ; 
-do leaks 프로세스id; 
-sleep 3; 
-clear; 
-done
+2) path 체크

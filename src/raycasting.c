@@ -14,9 +14,9 @@ void		calculate_wall_height(t_info *info, t_ray *ray)
 void		calculate_wall_distance(t_player *player, t_ray *ray)
 {
 	if (ray->side <= 1)
-		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2) / ray->vec_dir_x;
+		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2) / ray->dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2) / ray->vec_dir_y;
+		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2) / ray->dir_y;
 }
 
 void		perform_dda(t_info *info, t_ray *ray)
@@ -28,14 +28,12 @@ void		perform_dda(t_info *info, t_ray *ray)
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
 			ray->side = (ray->step_x == -1) ? 0 : 1;
-			//ray->side = 0;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
 			ray->side = (ray->step_y == -1) ? 2 : 3;
-			//ray->side = 1;
 		}
 		if (info->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
@@ -44,7 +42,7 @@ void		perform_dda(t_info *info, t_ray *ray)
 
 void		calculate_step_and_side_dist(t_player *player, t_ray *ray)
 {
-	if (ray->vec_dir_x < 0)
+	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
@@ -54,7 +52,7 @@ void		calculate_step_and_side_dist(t_player *player, t_ray *ray)
 		ray->step_x = 1;
 		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
 	}
-	if (ray->vec_dir_y < 0)
+	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
@@ -69,12 +67,12 @@ void		calculate_step_and_side_dist(t_player *player, t_ray *ray)
 void		init_ray(t_info *info, t_player *player, t_ray *ray, int x)
 {
 	ray->camera_x = 2 * x / (double)info->win_width - 1;
-	ray->vec_dir_x = player->vec_dir_x + player->plane_x * ray->camera_x;
-	ray->vec_dir_y = player->vec_dir_y + player->plane_y * ray->camera_x;
+	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
+	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)player->x;
 	ray->map_y = (int)player->y;
-	ray->delta_dist_x = fabs(1 / ray->vec_dir_x);
-	ray->delta_dist_y = fabs(1 / ray->vec_dir_y);
+	ray->delta_dist_x = fabs(1 / ray->dir_x);
+	ray->delta_dist_y = fabs(1 / ray->dir_y);
 	ray->hit = 0;
 }
 

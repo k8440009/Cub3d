@@ -52,10 +52,17 @@ int			set_texture(t_info *info)
 		return (print_error("set south texture error", info));
 	if (!load_image(info, info->texture[4], info->sprite_texture_path, &img))
 		return (print_error("set sprite texture error", info));
+	free(info->north_texture_path);
+	free(info->east_texture_path);
+	free(info->south_texture_path);
+	free(info->west_texture_path);
+	free(info->sprite_texture_path);
+	/*
 	ft_free(info->north_texture_path);
 	ft_free(info->east_texture_path);
 	ft_free(info->south_texture_path);
 	ft_free(info->west_texture_path);
 	ft_free(info->sprite_texture_path);
+	*/
 	return (1);
 }

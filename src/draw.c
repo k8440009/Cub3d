@@ -36,9 +36,9 @@ void		get_wall_color(t_info *info, t_ray *ray, int x)
 void		get_wall_texture(t_player *player, t_ray *ray)
 {
 	if (ray->side <= 1)
-		ray->wall_x = player->y + ray->perp_wall_dist * ray->vec_dir_y;
+		ray->wall_x = player->y + ray->perp_wall_dist * ray->dir_y;
 	else
-		ray->wall_x = player->x + ray->perp_wall_dist * ray->vec_dir_x;
+		ray->wall_x = player->x + ray->perp_wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 	ray->texture_x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
 	if (ray->side == 1 || ray->side == 2)

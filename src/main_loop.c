@@ -21,7 +21,6 @@ void		sprite_raycasting(t_info *info, t_player *player)
 	}
 }
 
-
 int			main_loop(t_info *info)
 {
 	raycasting(info);

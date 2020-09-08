@@ -1,7 +1,5 @@
 NAME = cub3D
 
-# LIBFT = ./libft/libft.a
-
 CC = gcc
 INCS = -I./includes -I./libft -I./mlx
 INCLIB = -Lmlx -lmlx -framework OpenGL -framework Appkit -Llibft -lft
@@ -10,21 +8,26 @@ LIBFT = ./libft
 
 SRCS =  ./src/get_next_line.c \
 		./src/main.c \
-		./src/init.c \
-		./src/error.c \
+		./src/main_loop.c \
+		./src/init_info.c \
+		./src/init_element.c \
+		./src/init_map.c \
 		./src/parse_cub.c \
 		./src/parse_element.c \
+		./src/check_element.c \
 		./src/parse_map.c \
 		./src/check_map.c \
-		./src/check_element.c \
 		./src/set_sprite.c \
 		./src/set_texture.c \
-		./src/main_loop.c \
 		./src/raycasting.c \
-		./src/key_handling.c \
+		./src/sort_sprite.c \
 		./src/draw.c \
+		./src/key_handling.c \
 		./src/bmp.c \
-		./src/utils.c
+		./src/map_utils.c \
+		./src/utils.c \
+		./src/free.c \
+		./src/error.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -45,4 +48,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: test bonus all clean fclean re
+.PHONY: all clean fclean re

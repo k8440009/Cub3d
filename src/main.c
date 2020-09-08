@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int		process_option(t_info *info, int option)
+int			process_option(t_info *info, int option)
 {
 	if (option == 1)
 	{
@@ -21,12 +21,11 @@ int		process_option(t_info *info, int option)
 	return (1);
 }
 
-int		init_data(t_info *info, char *path)
+int			init_game(t_info *info, char *path)
 {
-
-	init_player(&info->player);
 	init_info(info);
-	if (!pre_process_cub(info, path))	// cub 전처리
+	init_player(&info->player);
+	if (!pre_process_cub(info, path))
 		return (print_error("pre_process_cub error", info));
 	init_player_direction(info);
 	info->mlx = mlx_init();
@@ -41,14 +40,14 @@ int		init_data(t_info *info, char *path)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-    t_info		info;
-	int			option;
+	t_info		info;
+	int 		option;
 
-	option = (argc >= 2 && (ft_strncmp(argv[2], "--save", 6) == 0)) ? 1 : 0;
-	if (!init_data(&info, argv[1]))
-		return (print_error("init_data error", &info));
+	option = (argc >= 3 && (ft_strncmp(argv[2], "--save", 6) == 0)) ? 1 : 0;
+	if (!init_game(&info, argv[1]))
+		return (print_error("init_game error", &info));
 	if (!process_option(&info, option))
 		return (print_error("process_option error", &info));
 	free_cub(&info);
