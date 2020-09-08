@@ -5,10 +5,10 @@ int		process_option(t_info *info, int option)
 	if (option == 1)
 	{
 		raycasting(info);
-		//sprite_raycasting(info, &info->player);
-		//if (!save_bmp(info))
-		//	return (exit_error(info));
-		exit(0);
+		sprite_raycasting(info, &info->player);
+		if (!save_bmp(info))
+			return (print_error("save bmp error", info));
+		ft_exit(0);
 	}
 	else
 	{
@@ -46,7 +46,7 @@ int		main(int argc, char **argv)
     t_info		info;
 	int			option;
 
-	option = (argc >= 2 && (ft_strncmp(argv[1], "--save", 6) == 0)) ? 1 : 0;
+	option = (argc >= 2 && (ft_strncmp(argv[2], "--save", 6) == 0)) ? 1 : 0;
 	if (!init_data(&info, argv[1]))
 		return (print_error("init_data error", &info));
 	if (!process_option(&info, option))

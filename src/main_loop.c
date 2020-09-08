@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void	sprite_raycasting(t_info *info, t_player *player)
+void		sprite_raycasting(t_info *info, t_player *player)
 {
 	int	i;
 	int	stripe;

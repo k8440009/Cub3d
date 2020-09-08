@@ -8,9 +8,9 @@ void		info_sort(t_info *info)
 	t_sprite	temp;
 
 	i = 0;
-	max = 0;
 	while (i < info->count_sprite - 1)
 	{
+		max = i;
 		j = i + 1;
 		while (j < info->count_sprite)
 		{

@@ -23,6 +23,7 @@ SRCS =  ./src/get_next_line.c \
 		./src/raycasting.c \
 		./src/key_handling.c \
 		./src/draw.c \
+		./src/bmp.c \
 		./src/utils.c
 
 OBJS = $(SRCS:.c=.o)

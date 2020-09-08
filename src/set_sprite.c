@@ -24,24 +24,28 @@ void		get_sprite_color(t_info *info, t_sprite_ray *s_ray, int stripe)
 
 void		calculate_sprite_height(t_info *info, t_sprite_ray *s_ray)
 {
-	int	v_div;
+	// int	v_div;
 
-	v_div = 1;
-	s_ray->height = (int)fabs((info->win_height / s_ray->transform_y) / v_div);
-	s_ray->draw_start_y = -s_ray->height / 2 + info->win_height / 2 + s_ray->v_move_screen;
+	// v_div = 1;
+	// s_ray->height = ((info->win_height / s_ray->transform_y) / v_div);
+	s_ray->height = abs((int)(info->win_height / s_ray->transform_y));
+	//s_ray->draw_start_y = -s_ray->height / 2 + info->win_height / 2 + s_ray->v_move_screen;
+	s_ray->draw_start_y = -s_ray->height / 2 + info->win_height / 2;
 	if (s_ray->draw_start_y < 0)
 		s_ray->draw_start_y = 0;
-	s_ray->draw_end_y = s_ray->height / 2 + info->win_height / 2 + s_ray->v_move_screen;
+	// s_ray->draw_end_y = s_ray->height / 2 + info->win_height / 2 + s_ray->v_move_screen;
+	s_ray->draw_end_y = s_ray->height / 2 + info->win_height / 2;
 	if (s_ray->draw_end_y >= info->win_height)
 		s_ray->draw_end_y = info->win_height - 1;
 }
 
 void		calculate_sprite_width(t_info *info, t_sprite_ray *s_ray)
 {
-	int	u_div;
+	//int	u_div;
 
-	u_div = 1;
-	s_ray->width = (int)fabs((info->win_height / s_ray->transform_y) / u_div);
+	//u_div = 1;
+	//s_ray->width = (int)fabs((info->win_height / s_ray->transform_y) / u_div);
+	s_ray->width = abs((int)(info->win_height / (s_ray->transform_y)));
 	s_ray->draw_start_x = -s_ray->width / 2 + s_ray->screen_x;
 	if (s_ray->draw_start_x < 0)
 		s_ray->draw_start_x = 0;
@@ -52,16 +56,16 @@ void		calculate_sprite_width(t_info *info, t_sprite_ray *s_ray)
 
 void		translate_sprite(t_info *info, t_player *player, t_sprite_ray *s_ray, int i)
 {
-	double	v_mode;
+	// double	v_mode;
 
-	v_mode = 0.0;
+	// v_mode = 0.0;
 	s_ray->x = info->sprite[i].x - player->x;
 	s_ray->y = info->sprite[i].y - player->y;
-	s_ray->inversion_detection = 1.0 / (player->plane_x * player->vec_dir_y - player->vec_dir_x * player->plane_y);
-	s_ray->transform_x = s_ray->inversion_detection * (player->vec_dir_y * s_ray->x - player->vec_dir_x * s_ray->y);
+	s_ray->inversion_detection = 1.0 / (player->plane_x * player->vec_dir_y - player->plane_y * player->vec_dir_x);
+	s_ray->transform_x = s_ray->inversion_detection * (player->vec_dir_y * s_ray->x - s_ray->y * player->vec_dir_x);
 	s_ray->transform_y = s_ray->inversion_detection * (-player->plane_y * s_ray->x + player->plane_x * s_ray->y);
 	s_ray->screen_x = (int)((info->win_width / 2) * (1 + s_ray->transform_x / s_ray->transform_y));
-	s_ray->v_move_screen = (int)(v_mode / s_ray->transform_y);
+	// s_ray->v_move_screen = (int)(v_mode / s_ray->transform_y);
 }
 
 void		sort_sprite(t_info *info, t_player *player)
@@ -70,7 +74,7 @@ void		sort_sprite(t_info *info, t_player *player)
 
 	i = -1;
 	while (++i < info->count_sprite)
-		info->sprite[i].distance = sqrt(((player->x - info->sprite[i].x) * (player->x - info->sprite[i].x) + (player->y - info->sprite[i].y) * (player->y - info->sprite[i].y)));
+		info->sprite[i].distance = ((player->x - info->sprite[i].x) * (player->x - info->sprite[i].x) + (player->y - info->sprite[i].y) * (player->y - info->sprite[i].y));
 	info_sort(info);
 }
 

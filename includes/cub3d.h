@@ -74,6 +74,7 @@ typedef struct		s_sprite
 	double			y;
 	double			x;
 	double			distance;
+	double			order;
 }					t_sprite;
 
 typedef struct		s_sprite_ray
@@ -245,6 +246,7 @@ void		get_sprite_color(t_info *info, t_sprite_ray *s_ray, int stripe);
 **	main_loop.c
 */
 int			main_loop(t_info *info);
+void		sprite_raycasting(t_info *info, t_player *player);
 /*
 **	ray_casting
 */
@@ -259,6 +261,10 @@ void		calculate_wall_height(t_info *info, t_ray *ray);
 void		get_wall_texture(t_player *player, t_ray *ray);
 void		get_wall_color(t_info *info, t_ray *ray, int x);
 void		draw_texture(t_info *info);
+/*
+**
+*/
+int			save_bmp(t_info *info);
 /*
 **	key_handling
 */
@@ -279,7 +285,6 @@ void		info_sort(t_info *info);
 /*
 ** error
 */
-// int			print_error(int	error_code, t_info *info);
 int			print_error(char *message, t_info *info);
 
 #endif

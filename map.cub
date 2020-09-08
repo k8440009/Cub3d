@@ -4,7 +4,7 @@ SO ./textures/bluestone.xpm
 WE ./textures/colorstone.xpm
 EA ./textures/mossy.xpm
 
-S ./textures/sad_cat1.xpm
+S ./textures/barrel.xpm
 F 30,225,0
 C 0,0,220
 
