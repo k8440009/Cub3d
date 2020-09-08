@@ -82,4 +82,3 @@ char	**ft_split(char const *s, char c)
 	str_malloc_copy((char *)s, c, num, res);
 	return (res);
 }
-

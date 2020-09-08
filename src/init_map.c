@@ -1,4 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 03:56:09 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 03:56:11 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
+
+int			init_visited(t_info *info)
+{
+	int		r;
+
+	if (!(info->visited = (char**)ft_calloc(info->map_height, sizeof(char *))))
+		return (print_error("init_visited error 1", info));
+	r = -1;
+	while (++r < info->map_height)
+	{
+		if (!(info->visited[r] = (char *)
+			ft_calloc(info->map_width + 1, sizeof(char))))
+			return (print_error("init_visited error 2", info));
+		info->visited[r][info->map_width] = '\0';
+	}
+	return (1);
+}
 
 void		init_state(t_info *info)
 {
@@ -25,8 +54,9 @@ int			init_map(t_info *info, t_list *lst)
 	info->map_width = get_max_line_size(lst);
 	while (lst)
 	{
-		if (!(info->map[r] = (char *)malloc(sizeof(char) * (info->map_width + 1))))
-			return(print_error("init map error 2", info));
+		if (!(info->map[r] = (char *)
+		malloc(sizeof(char) * (info->map_width + 1))))
+			return (print_error("init map error 2", info));
 		c = 0;
 		while (c++ < (int)ft_strlen(lst->content))
 			info->map[r][c] = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_info.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 03:55:35 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 03:55:37 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int			init_texture(t_info *info)
@@ -9,7 +21,8 @@ int			init_texture(t_info *info)
 	r = -1;
 	while (++r < 5)
 	{
-		if (!(info->texture[r] = (int *)ft_calloc(TEXTURE_HEIGHT * TEXTURE_WIDTH, sizeof(int))))
+		if (!(info->texture[r] = (int *)
+		ft_calloc(TEXTURE_HEIGHT * TEXTURE_WIDTH, sizeof(int))))
 			return (0);
 	}
 	return (1);

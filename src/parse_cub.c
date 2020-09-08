@@ -1,22 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_cub.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:04:43 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:04:45 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int			pre_process_map(t_info *info, char *line)
 {
-	t_list		*lst;
+	t_list	*lst;
+	int		gnl_ret;
 
 	info->map_width = 0;
 	info->map_height = 0;
 	lst = ft_lstnew(ft_strdup(line));
-    free(line);
-	while (get_next_line(info->fd, &line) > 0)
+	free(line);
+	while ((gnl_ret = get_next_line(info->fd, &line) > 0))
 	{
 		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
 		free(line);
 	}
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup(line)));
 	free(line);
-    if (!parse_map(info, lst))
-        return (print_error("read_map error1\n", info));
+	if (gnl_ret == -1)
+		return (print_error("gnl read map error\n", info));
+	if (!parse_map(info, lst))
+		return (print_error("read_map error1\n", info));
 	return (1);
 }
 
@@ -50,11 +65,11 @@ int			pre_process_cub(t_info *info, char *path)
 	int			ret;
 
 	if ((info->fd = open(path, O_RDONLY)) == -1)
-		return (print_error("read cub file error", info)); 
+		return (print_error("read cub file error", info));
 	while ((gnl_ret = get_next_line(info->fd, &line)) > 0)
 	{
 		if ((ret = parse_element_line(info, line)) == 0)
-			break;
+			break ;
 		free(line);
 	}
 	if (gnl_ret == -1)

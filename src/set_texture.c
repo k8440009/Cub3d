@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_texture.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:19:33 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:19:34 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		cast_floor_ceiling(t_info *info)
@@ -24,9 +36,11 @@ int			load_image(t_info *info, int *texture, char *path, t_img *img)
 	int		r;
 	int		c;
 
-	if (!(img->img = mlx_xpm_file_to_image(info->mlx, path, &img->width, &img->height)))
+	if (!(img->img = mlx_xpm_file_to_image(info->mlx, path,
+		&img->width, &img->height)))
 		return (print_error("load_iamge error", info));
-	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l, &img->endian);
+	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp,
+		&img->size_l, &img->endian);
 	r = -1;
 	while (r++ < img->height)
 	{
@@ -52,17 +66,10 @@ int			set_texture(t_info *info)
 		return (print_error("set south texture error", info));
 	if (!load_image(info, info->texture[4], info->sprite_texture_path, &img))
 		return (print_error("set sprite texture error", info));
-	free(info->north_texture_path);
-	free(info->east_texture_path);
-	free(info->south_texture_path);
-	free(info->west_texture_path);
-	free(info->sprite_texture_path);
-	/*
 	ft_free(info->north_texture_path);
 	ft_free(info->east_texture_path);
 	ft_free(info->south_texture_path);
 	ft_free(info->west_texture_path);
 	ft_free(info->sprite_texture_path);
-	*/
 	return (1);
 }

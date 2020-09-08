@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:12:42 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:12:43 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		set_direction(t_info *info, int y, int x, int *dir_count)
@@ -23,7 +35,7 @@ void		save_map_data(t_info *info, int y, int x, int *dir_count)
 		info->count_sprite++;
 	else if (info->map[y][x] == 'N' || info->map[y][x] == 'E'
 			|| info->map[y][x] == 'S' || info->map[y][x] == 'W')
-		set_direction(info, y,x, dir_count);
+		set_direction(info, y, x, dir_count);
 }
 
 int			set_map_data(t_info *info, t_list *lst)

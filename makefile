@@ -12,6 +12,7 @@ SRCS =  ./src/get_next_line.c \
 		./src/init_info.c \
 		./src/init_element.c \
 		./src/init_map.c \
+		./src/init_ray.c \
 		./src/parse_cub.c \
 		./src/parse_element.c \
 		./src/check_element.c \
@@ -47,5 +48,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
 
 .PHONY: all clean fclean re

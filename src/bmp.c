@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 03:38:16 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 03:38:18 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		set_int_in_char(unsigned char *start, int value)
@@ -47,7 +59,6 @@ void		write_data(t_info *info, int fd)
 		i--;
 	}
 }
-
 
 int			save_bmp(t_info *info)
 {

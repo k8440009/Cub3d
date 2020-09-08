@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 20:09:49 by sungslee          #+#    #+#             */
-/*   Updated: 2020/08/14 20:48:41 by sungslee         ###   ########.fr       */
+/*   Created: 2020/07/18 17:28:55 by sungslee          #+#    #+#             */
+/*   Updated: 2020/07/18 18:24:05 by sungslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	handle_line(char **line, char **buffer, char *next_line)
 
 int			get_next_line(int fd, char **line)
 {
-	static char		*buffer[512];
+	static char		*buffer[OPEN_MAX];
 	char			tmp_buf[BUFFER_SIZE + 1];
 	char			*next_line;
 	char			*tmp;

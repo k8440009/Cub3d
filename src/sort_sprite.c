@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_sprite.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:21:19 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:21:20 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		bubble_sort(t_info *info)
@@ -34,6 +46,8 @@ void		sort_sprite(t_info *info, t_player *player)
 
 	i = -1;
 	while (++i < info->count_sprite)
-		info->sprite[i].distance = ((player->x - info->sprite[i].x) * (player->x - info->sprite[i].x) + (player->y - info->sprite[i].y) * (player->y - info->sprite[i].y));
+		info->sprite[i].distance =
+		((player->x - info->sprite[i].x) * (player->x - info->sprite[i].x)
+		+ (player->y - info->sprite[i].y) * (player->y - info->sprite[i].y));
 	bubble_sort(info);
 }

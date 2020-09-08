@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_element.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:11:56 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:11:57 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int			get_rgb(char **rgb)
@@ -64,7 +76,8 @@ int			get_color(t_info *info, char *line, int type)
 
 	if (!(rgb = ft_split(line, ',')) || !check_split_size(rgb, 3))
 		return (print_error("get color split error\n", info));
-	if (!check_str_digit(rgb[0]) || !check_str_digit(rgb[1]) || !check_str_digit(rgb[2]))
+	if (!check_str_digit(rgb[0]) || !check_str_digit(rgb[1]) ||
+		!check_str_digit(rgb[2]))
 		return (print_error("get color str digit error\n", info));
 	if ((color = get_rgb(rgb)) == -1)
 		return (print_error("get color str digit error\n", info));

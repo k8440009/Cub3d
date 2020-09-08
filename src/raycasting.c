@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:13:18 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:13:20 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		calculate_wall_height(t_info *info, t_ray *ray)
@@ -14,9 +26,11 @@ void		calculate_wall_height(t_info *info, t_ray *ray)
 void		calculate_wall_distance(t_player *player, t_ray *ray)
 {
 	if (ray->side <= 1)
-		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2) / ray->dir_x;
+		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2)
+		/ ray->dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2) / ray->dir_y;
+		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2)
+		/ ray->dir_y;
 }
 
 void		perform_dda(t_info *info, t_ray *ray)
@@ -61,36 +75,5 @@ void		calculate_step_and_side_dist(t_player *player, t_ray *ray)
 	{
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
-	}
-}
-
-void		init_ray(t_info *info, t_player *player, t_ray *ray, int x)
-{
-	ray->camera_x = 2 * x / (double)info->win_width - 1;
-	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-	ray->map_x = (int)player->x;
-	ray->map_y = (int)player->y;
-	ray->delta_dist_x = fabs(1 / ray->dir_x);
-	ray->delta_dist_y = fabs(1 / ray->dir_y);
-	ray->hit = 0;
-}
-
-void		raycasting(t_info *info)
-{
-	int		x;
-
-	cast_floor_ceiling(info);
-	x = -1;
-	while (++x < info->win_width)
-	{
-		init_ray(info, &info->player, &info->ray, x);
-		calculate_step_and_side_dist(&info->player, &info->ray);
-		perform_dda(info, &info->ray);
-		calculate_wall_distance(&info->player, &info->ray);
-		calculate_wall_height(info, &info->ray);
-		get_wall_texture(&info->player, &info->ray);
-		get_wall_color(info, &info->ray, x);
-		info->z_buf[x] = info->ray.perp_wall_dist;
 	}
 }

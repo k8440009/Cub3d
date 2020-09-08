@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_element.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 03:39:46 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 03:39:48 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int			check_str_digit(char *data)
@@ -15,8 +27,9 @@ int			check_str_digit(char *data)
 
 int			check_split_size(char **data, int cur_size)
 {
-	int		size = 0;
+	int		size;
 
+	size = 0;
 	while (*data)
 	{
 		size++;
@@ -49,7 +62,8 @@ int			check_element(t_info *info)
 {
 	if (!check_flag(info))
 		return (print_error("element flag error", info));
-	if (info->win_width <= 0 || info->win_height <= 0 || info->floor_color < 0 || info->ceiling_color < 0)
+	if (info->win_width <= 0 || info->win_height <= 0
+		|| info->floor_color < 0 || info->ceiling_color < 0)
 		return (print_error("element size error", info));
 	if (!info->north_texture_path || !info->east_texture_path ||
 		!info->west_texture_path || !info->south_texture_path ||

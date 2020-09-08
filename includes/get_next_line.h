@@ -6,7 +6,7 @@
 /*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 16:02:20 by sungslee          #+#    #+#             */
-/*   Updated: 2020/08/14 20:22:18 by sungslee         ###   ########.fr       */
+/*   Updated: 2020/07/29 19:25:39 by sungslee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stddef.h>
-# include <stdio.h>
 # include "../libft/libft.h"
 
 int			get_next_line(int fd, char **line);

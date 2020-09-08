@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 03:44:45 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 03:44:48 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void		draw_texture(t_info *info)
@@ -21,13 +33,15 @@ void		get_wall_color(t_info *info, t_ray *ray, int x)
 	int		y;
 
 	ray->step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
-	ray->texture_pos = (ray->draw_start - info->win_height / 2 + ray->line_height / 2) * ray->step;
+	ray->texture_pos = (ray->draw_start - info->win_height / 2 +
+					ray->line_height / 2) * ray->step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
 		ray->texture_y = (int)ray->texture_pos & (TEXTURE_HEIGHT - 1);
 		ray->texture_pos += ray->step;
-		color = info->texture[ray->side][TEXTURE_HEIGHT * ray->texture_y + ray->texture_x];
+		color = info->texture[ray->side]
+		[TEXTURE_HEIGHT * ray->texture_y + ray->texture_x];
 		info->buf[y][x] = color;
 		y++;
 	}

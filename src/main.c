@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungslee <sungslee@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/09 04:01:24 by sungslee          #+#    #+#             */
+/*   Updated: 2020/09/09 04:01:25 by sungslee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int			process_option(t_info *info, int option)
@@ -12,7 +24,8 @@ int			process_option(t_info *info, int option)
 	}
 	else
 	{
-		info->win = mlx_new_window(info->mlx, info->win_width, info->win_height, "sungslee");
+		info->win = mlx_new_window(info->mlx, info->win_width,
+		info->win_height, "sungslee");
 		mlx_hook(info->win, X_EVENT_KEY_PRESS, 0, key_press, info);
 		mlx_hook(info->win, X_EVENT_KEY_EXIT, 0, ft_exit, 0);
 		mlx_loop_hook(info->mlx, main_loop, info);
@@ -35,15 +48,18 @@ int			init_game(t_info *info, char *path)
 		return (print_error("init_texture error", info));
 	if (!set_texture(info))
 		return (print_error("set_texture error", info));
-	info->img.img = mlx_new_image(info->mlx, info->win_width, info->win_height);
-	info->img.data = (int *)mlx_get_data_addr(info->img.img, &info->img.bpp, &info->img.size_l, &info->img.endian);
+	info->img.img =
+	mlx_new_image(info->mlx, info->win_width,
+	info->win_height);
+	info->img.data = (int *)mlx_get_data_addr(info->img.img,
+	&info->img.bpp, &info->img.size_l, &info->img.endian);
 	return (1);
 }
 
 int			main(int argc, char **argv)
 {
 	t_info		info;
-	int 		option;
+	int			option;
 
 	option = (argc >= 3 && (ft_strncmp(argv[2], "--save", 6) == 0)) ? 1 : 0;
 	if (!init_game(&info, argv[1]))
