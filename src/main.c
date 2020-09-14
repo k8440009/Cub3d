@@ -61,11 +61,19 @@ int			main(int argc, char **argv)
 	t_info		info;
 	int			option;
 
-	option = (argc >= 3 && (ft_strncmp(argv[2], "--save", 6) == 0)) ? 1 : 0;
-	if (!init_game(&info, argv[1]))
-		return (print_error("init_game error", &info));
-	if (!process_option(&info, option))
-		return (print_error("process_option error", &info));
-	free_cub(&info);
+	if (argc == 2 || (argc == 3 && ft_strncmp(argv[2], "--save", 6) == 0))
+	{
+		if (argc == 3)
+			option = 1;
+		else
+			option = 0;
+		if (!init_game(&info, argv[1]))
+			return (print_error("init_game error", &info));
+		if (!process_option(&info, option))
+			return (print_error("process_option error", &info));
+		free_cub(&info);
+	}
+	else
+		return (print_error("wrong argument error", &info));
 	return (0);
 }

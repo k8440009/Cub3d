@@ -5,6 +5,9 @@ INCS = -I./includes -I./libft -I./mlx
 INCLIB = -Lmlx -lmlx -framework OpenGL -framework Appkit -Llibft -lft
 CFLAGS = -Wall -Werror -Wextra $(INCS)
 LIBFT = ./libft
+MLX = ./mlx
+MLX_LIB = libmlx.a
+BMP = screenshot.bmp
 
 SRCS =  ./src/get_next_line.c \
 		./src/main.c \
@@ -34,18 +37,22 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(MLX_LIB) $(OBJS)
 	$(MAKE) -C $(LIBFT)
 	$(CC) -g $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(INCLIB)
 
+$(MLX_LIB) :
+	make all -C $(MLX)
+
 clean:
-	$(MAKE) -C $(LIBFT) clean
-	rm -f $(OBJS)
+	$(MAKE) clean -C $(LIBFT)
+	$(MAKE) clean -C $(MLX)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT) fclean
-	rm -f $(OBJS)
-	rm -f $(NAME)
+	$(MAKE) fclean -C $(LIBFT)
+	rm -rf $(OBJS)
+	rm -rf $(NAME)
+	rm -rf $(BMP)
 
 re: fclean all
 
