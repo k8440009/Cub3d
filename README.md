@@ -1,7 +1,7 @@
 # Cub3d
 - 울펜슈타인에서 사용한 raycasting 기법을 이용하여 Semi-3D 구현
 
-<img align="center" src="screenshot.png" alt="Screenshot of the game" />
+<img align="center" src="screen_shot.png" alt="Screenshot of the game" />
 
 ## 기능
 - WASD 키를 사용하여 플레이어 움직임
