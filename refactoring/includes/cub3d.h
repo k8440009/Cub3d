@@ -34,6 +34,7 @@ typedef struct s_mapInfo{
 	char *southTexturePath;
 	char *westTexturePath;
 	char *eastTexturePath;
+	char *spriteTexturePath;
 	
 	int floorColor;
 	int ceilColor;
@@ -41,4 +42,12 @@ typedef struct s_mapInfo{
 } t_mapInfo;
 
 
+/*
+* getElement.c
+*/
+int getScreenSize(t_gameInfo *info, char *line);
+/*
+	utils.c
+*/
+void freeTwoArr(char **arr);
 #endif
