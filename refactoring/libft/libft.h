@@ -17,6 +17,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct s_list
+{
+	void *content;
+	struct s_list *next;
+} t_list;
+
+
 int ft_strcmp(const char *s1, const char *s2);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
 int ft_strlen(const char *s);
@@ -29,5 +36,8 @@ void ft_bzero(void *s, size_t n);
 void *ft_memset(void *b, int c, size_t n);
 int ft_atoi(const char *str);
 char *ft_strdup(const char *s);
+
+t_list *ft_lstnew(void *content);
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

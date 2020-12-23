@@ -23,8 +23,6 @@ int	init_game(t_gameInfo *info, char *path){
 	setMap(info);
 	setPlayer(info);
 
-	get_player();
-
 }
 
 int main(int argc, char **argv){

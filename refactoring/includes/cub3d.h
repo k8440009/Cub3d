@@ -41,13 +41,20 @@ typedef struct s_mapInfo{
 	
 } t_mapInfo;
 
-
+/*
+* parsingCub.c
+*/
+int parsingCub(t_gameInfo *info, char *path);
 /*
 * getElement.c
 */
 int getScreenSize(t_gameInfo *info, char *line);
+int getColor(t_gameInfo *info, char *line, int type);
+int getTexture(t_gameInfo *info, char *line, int type);
 /*
 	utils.c
 */
 void freeTwoArr(char **arr);
+
+t_list *ft_lstnew(void *content);
 #endif

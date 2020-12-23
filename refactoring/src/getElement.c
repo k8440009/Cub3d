@@ -20,9 +20,9 @@ int			getRgb(char **rgb)
 	return (color);
 }
 
+/*
 void		fillFlag(t_gameInfo *info, int type)
 {
-	/*
 	if (type == NORTH)
 		info->flag.no = 1;
 	else if (type == EAST)
@@ -38,15 +38,21 @@ void		fillFlag(t_gameInfo *info, int type)
 	else if (type == CEILING)
 		info->flag.c = 1;
 	info->flag.cnt += 1;
-	*/
 }
+*/
 
-int			getColor(t_gameInfo *info, char *line, int type)
+int getColor(t_gameInfo *info, char *line, int type)
 {
 	char	**rgb;
 	int		color;
 
 	rgb = ft_split(line, ',');
+
+	t_mapInfo *mapInfo = info->map_info;
+	if (type == FLOOR)
+		mapInfo->floorColor = color;
+	else if (type == CEILING)
+		mapInfo->ceilColor = color;
 	freeTwoArr(rgb);
 
 	/*
@@ -69,7 +75,11 @@ int			getColor(t_gameInfo *info, char *line, int type)
 	return (1);
 }
 
-int			getTexture(t_gameInfo *info, char *line, int type)
+int getMap(t_gameInfo *info){
+	
+}
+
+int getTexture(t_gameInfo *info, char *line, int type)
 {
 	t_mapInfo *mapInfo = info->map_info;
 	if (type == NORTH)

@@ -1,5 +1,9 @@
 #include "../includes/cub3d.h"
 
+int	parsingMap(t_gameInfo *info, char *line){
+	
+}
+
 int	parseElementLine(t_gameInfo *info, char *line){
 	if (ft_strncmp(line, "R ", 2) == 0)
 		return (getScreenSize(info, line + 2));
@@ -22,18 +26,25 @@ int	parseElementLine(t_gameInfo *info, char *line){
 	return (0);
 }
 
-int parsing_cub(t_gameInfo *info, char *path){
+int parsingCub(t_gameInfo *info, char *path){
 	char *line;
 	int gnl_ret;
 	int ret;
+	int r = 0;
+	int c = 0;
 
 	if((info->fd = open(path, O_RDONLY)) == -1){
 		return (-1);
 	}
 	while((gnl_ret = get_next_line(info->fd, &line)) > 0){
 		
-		if (!(parse_element_line(info, line)) == 0)
+		if (!(parseElementLine(info, line)) == 0)
 			break;
 		free(line);
 	}
+
+	if (!parsingMap(info, line)){
+
+	}
+	
 }
